@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./Project1-Edmund/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/ff6a322856.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <!-- Christine's Top Navigation -->
+    <nav class="navbar whitefont">
+        <div class='col-6 no-padding'>
+            <h1 id='navbarTitle' ></h1>
+        </div>
+
+        <!-- Weather App Button -->
+        <div class='col no-padding'>
+            <div id="weatherApp">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item" id='timeStamp'></li>
+                    <li class="nav-item">
+                        <button type="button" class="btn whitefont navbarInfo" id="forecastBtn" style="padding:0px !important" data-toggle="modal" data-target="#weatherModal"></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-12 col-sm-2 sidebar'>
+                <!-- Edmund's Sidebar Navigation -->
+                <div id="sidebar" class="list-group ">
+                    <div class='row'>
+                        <div class='col col-xl-12 sidebar-col' id='home'>
+                            <a class="list-group-item list-group-item-action whitefont" id='home'>
+                                <span class='side-icon' id='home'><i class="fas fa-home" id='home'></i></span>
+                                <span class='side-name' id='home'>Home</span>
+                            </a>
+                        </div>
+                        <div class='col col-xl-12 sidebar-col' id='calendar'>
+                            <a class="list-group-item list-group-item-action whitefont" id='calendar'>
+                                <span class='side-icon' id='calendar'><i class="fas fa-calendar-alt" id='calendar'></i></span>
+                                <span class='side-name' id='calendar'>Calendar</span>
+                            </a>
+                        </div>
+                        <div class='col col-xl-12 sidebar-col' id='setting'>
+                            <a class="list-group-item list-group-item-action whitefont" id='setting'>
+                                <span class='side-icon' id='setting'><i class="fas fa-cog" id='setting'></i></span>
+                                <span class='side-name' id='setting'>Setting</span>
+                            </a>
+                        </div>
+                        <div class='col col-xl-12 sidebar-col' id='logout'>
+                            <a class="list-group-item list-group-item-action whitefont" id='logout' data-toggle="modal" data-target="#logoutModal">
+                                <span class='side-icon' id='logout'><i class="fas fa-sign-out-alt" id='logout'></i></span>
+                                <span class='side-name' id='logout'>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='col'>
+                <!-- Edmund's Home Page -->
+                <div class='row display-row' id='home-row' style='display:inline'>
+                    <div class='container-fluid'>
+                        <h2>Home</h2>
+
+                        <div class='row' style="margin-bottom: 10px">
+                            <div class='col'>
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">Stock Quote:</div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                      <label for="searchQuote" class="sr-only">Search</label>
+                                      <input type="text" class="form-control" id="searchQuote" placeholder="Search">
+                                    </div>
+                                    <button type="button" class="btn btn-color whitefont mb-2" id='stockBtn'>search</button>
+                                  </form>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-12 col-lg-6 col-xl-7' id='stockSummary'>
+                                <h5 id='stockName'></h5><span id='stockPrice'></span>
+                                <div class='col-12' id='stockTable' style="margin-bottom: 15px;"></div>
+                            </div>
+                            <div class='col' id='marketSummary'>
+                                <h5>Markets</h5>
+                                <div class='col-12' id='marketTable'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Chet's Calendar Page -->
+                <div class='row display-row' id='calendar-row' style='display:none'>
+                    <div class='container-fluid'>
+                        <h2>Calendar</h2>
+                        
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                              <div class = "container-calendar">
+                                <div class = "card" style="margin-bottom: 20px;">
+                                  <div class = "card-header btn-cancel whitefont" id ="monthAndYear">June 2020</div>
+                                    <table class = " table table-bordered table-responsive-sm" id = "calendarTable">
+                                        <thread>
+                                            <tr>
+                                                <th>Sun</th>
+                                                <th>Mon</th>
+                                                <th>Tue</th>
+                                                <th>Wed</th>
+                                                <th>Thu</th>
+                                                <th>Fri</th>
+                                                <th>Sat</th>
+                                            </tr>
+                                        </thread>
+                                        <thread>
+                                            <tr>
+                                                <th></th>
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                                <th>4</th>
+                                                <th>5</th>
+                                                <th>6</th>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>7</th>
+                                                <th>8</th>
+                                                <th>9</th>
+                                                <th>10</th>
+                                                <th>11</th>
+                                                <th>12</th>
+                                                <th>13</th>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>14</th>
+                                                <th>15</th>
+                                                <th>16</th>
+                                                <th>17</th>
+                                                <th>18</th>
+                                                <th>19</th>
+                                                <th>20</th>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>21</th>
+                                                <th>22</th>
+                                                <th>23</th>
+                                                <th>24</th>
+                                                <th>25</th>
+                                                <th>26</th>
+                                                <th>27</th>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>28</th>
+                                                <th>29</th>
+                                                <th>30</th>
+                                            </tr>
+                                        </thread>
+                                    <tbody id="calendar-body"></tbody>
+                                    </table>
+                                <div class ="form-inline">
+                                  <button class = "btn-color whitefont col-4 calendarBtn" id='previousBtn'>Previous</button>
+                                  <button class = "btn-color whitefont col-4 calendarBtn" id='todayBtn'>Today</button>
+                                  <button class = "btn-color whitefont col-4 calendarBtn" id='nextBtn'>Next</button>
+                                </div>
+                              </div>
+                              </div>
+                            </div>
+                            <div class = "col">
+                                <div class="container-fluid container-planner"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                
+                <!-- Edmund's Setting Page -->
+                <div class='row display-row' id='setting-row' style='display:none'>
+                    <div class='container-fluid'>
+                        <h2>Settings</h2>
+
+                        <!-- Setting Profile -->
+                        <div class='margin-row' id='profile'>
+                            <div class='row'>
+                                <div class='col-12 col-sm-2 col-lg-1'>
+                                    <label>Profile:</label>
+                                </div>
+                                <div class='col'>
+                                    
+                                    <form>
+                                        <fieldset disabled>
+                                            <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" id="username">
+                                              </div>
+                                        </fieldset>
+
+                                        <div class="form-group">
+                                          <label for="name">Name</label>
+                                          <input type="text" class="form-control" id="profileName">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="setPassword">New Password</label>
+                                          <input type="password" class="form-control" id="setPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                            <div class="invalid-feedback">
+                                                Password not matching.
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="showPassword">
+                                            <label class="form-check-label" for="showPassword">Show Password</label>
+                                        </div>
+
+                                        <button type="button" class="btn btn-color whitefont" id='saveProfile'>Save</button>
+                                        <button type="button" class="btn btn-danger" id='deleteProfile' data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setting Theme -->
+                        <div class='margin-row' id='theme'>
+                            <div class='row'>
+                                <div class='col-12 col-sm-2 col-lg-1'>
+                                    <label>Theme:</label>
+                                </div>
+                                <div class='col'>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="default" id="default" value="option1">
+                                        <label class="form-check-label" for="default">Default</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ponder" id="ponder" value="option2">
+                                        <label class="form-check-label" for="ponder">Ponder</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="sunset" id="sunset" value="option3">
+                                        <label class="form-check-label" for="sunset">Shimmering Sunset</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="calm" id="calm" value="option4">
+                                        <label class="form-check-label" for="calm">Calm It Down</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setting Weather -->
+                        <div class='margin-row' id='weather'>
+                            <div class='row'>
+                                <div class='col-12 col-sm-2 col-lg-1'>
+                                    <label>Weather:</label>
+                                </div>
+                                <div class='col'>
+                                    <div class="btn-group btn-group-toggle" onclick="changeUnit()" data-toggle="buttons">
+                                        <label class="btn btn-secondary" id='metric'>
+                                            <input type="radio" name="options" id="metric"> &degC
+                                        </label>
+                                        <label class="btn btn-secondary" id='imperial'>
+                                            <input type="radio" name="options" id="imperial"> &degF
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Christine's Modal for Weather -->
+    <div class="modal fade" id="weatherModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalHeader">Weather Forecast</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="forecast">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-color whitefont" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Edmund's Modal for Log Out -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Log Out</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              You are about to log out.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel whitefont" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-color whitefont" id='confirmLogout'>Log Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <!-- Edmund's Modal for Delete Account -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            You are about to delete your account.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-cancel whitefont" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger whitefont" id='deleteAccount'>Delete</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Hidden Variables -->
+    <div id='currentDay' style="display: none;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Project-1-Chet/style.js"></script>
+    <script src='./Project1-Christine/Develop/script.js'></script>
+    <script src="./Project1-Edmund/stock.js"></script>
+    <script src="./Project1-Edmund/script.js"></script>
+
+</body>
+</html>
+
+
+
+
+

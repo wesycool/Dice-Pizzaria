@@ -1,0 +1,94 @@
+h1{
+    font-size: 3vmax !important;
+}
+
+.sidebar{
+    height: calc(100vh - 5.1873rem);
+}
+
+.sidebar, .no-padding{
+    padding:0px !important;
+}
+
+.list-group-item{
+    background-color: transparent !important;
+    border: 0px !important;
+}
+
+.whitefont{
+    color: white !important;
+    font-size: 125%;
+}
+
+.side-name{
+    margin-left:10px;
+}
+
+.sidebar-col{
+    width: 100%
+}
+
+.margin-row{
+    margin-bottom: 50px !important;
+}
+
+.hour {
+    text-align: end;
+}
+
+#timeStamp{
+    font-size:10px;
+    text-align:right;
+    width:100%
+}
+
+
+
+/* For Mobile */
+@media screen and (orientation: portrait) and (max-width: 768px){
+    .sidebar{
+        height:100%;
+        text-align: center;
+    }
+
+    .sidebar .row{
+        width: 100%;
+        margin: 0px;
+    }
+
+    .side-name{
+        display: none;
+    }
+
+    .sidebar-col{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .calendarBtn, #calendarTable{
+        font-size: 4vw;
+    }
+    
+}
+
+/* For iPad */
+@media screen and  (width: 768px){
+    .sidebar{
+        height: calc(100vh - 2.5rem);
+        max-width: 70px !important;
+    }
+
+
+}
+
+
+/* For Mobile/iPad Landscape Mode */
+@media screen and (orientation: landscape) and (max-width: 905px){
+    .sidebar{
+        max-width: 70px !important;
+        text-align: center;
+    }
+    .side-name{
+        display: none;
+    }
+}

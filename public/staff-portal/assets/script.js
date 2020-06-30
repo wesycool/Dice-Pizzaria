@@ -20,8 +20,6 @@ function startup(){
         document.getElementById(selectColor).checked = true
 
         getLocation(getData.units)
-        getFinance('^GSPC')
-        getMarket()
 
         themeChange(selectColor, false)
     }
@@ -78,7 +76,7 @@ function themeChange( id , isSetting){
 
     metricChange(id)
     buttonColor(id)
-    calendarColor(selectColor, Number(moment().format('D')))
+    // calendarColor(selectColor, Number(moment().format('D')))
 }
 
 //Setting Weather Unit Change Function
@@ -161,36 +159,36 @@ document.querySelector('#confirmLogout').addEventListener('click',function(){
 
 
 //Calendar Day Color Change Function
-function calendarColor(selectColor, day){
-    document.querySelectorAll('th').forEach(value =>{
-        if (Number(value.textContent)){
-            value.setAttribute('style',`${ (value.textContent == day)? "color:white; background-color:"+color[selectColor][2] :''}`)
-            value.setAttribute('id',`${ (value.textContent == day)? 'current' :''}`)
-        }
-    })
-    plannerData()
-}
+// function calendarColor(selectColor, day){
+//     document.querySelectorAll('th').forEach(value =>{
+//         if (Number(value.textContent)){
+//             value.setAttribute('style',`${ (value.textContent == day)? "color:white; background-color:"+color[selectColor][2] :''}`)
+//             value.setAttribute('id',`${ (value.textContent == day)? 'current' :''}`)
+//         }
+//     })
+//     // plannerData()
+// }
 
 
 //Calendar Day Color Change onClick
-document.querySelectorAll('th').forEach(value =>{
-    value.addEventListener('click',function(){
-        if (Number(value.textContent)) calendarColor(selectColor,value.textContent)
-    })
-})
+// document.querySelectorAll('th').forEach(value =>{
+//     value.addEventListener('click',function(){
+//         if (Number(value.textContent)) calendarColor(selectColor,value.textContent)
+//     })
+// })
 
 
 //Calendar Button Color Change onClick
-document.querySelectorAll('.calendarBtn').forEach(button =>{
-    button.addEventListener('click', function(){
-        var current = Number(document.querySelector('#current').textContent)
-        switch (button.id){
-            case 'todayBtn': calendarColor(selectColor, Number(moment().format('d')));break;
-            case 'previousBtn': if(current != 1) calendarColor(selectColor, current-1);break;
-            case 'nextBtn':if(current != 30) calendarColor(selectColor, current+1);break;
-        }
-    })
-})
+// document.querySelectorAll('.calendarBtn').forEach(button =>{
+//     button.addEventListener('click', function(){
+//         var current = Number(document.querySelector('#current').textContent)
+//         switch (button.id){
+//             case 'todayBtn': calendarColor(selectColor, Number(moment().format('d')));break;
+//             case 'previousBtn': if(current != 1) calendarColor(selectColor, current-1);break;
+//             case 'nextBtn':if(current != 30) calendarColor(selectColor, current+1);break;
+//         }
+//     })
+// })
 
 
 //Delete Account Button onClick
@@ -202,24 +200,24 @@ document.querySelector('#deleteAccount').addEventListener('click',function(){
 
 
 //Planner Data Function
-function plannerData(){
-    document.querySelectorAll('#description').forEach(text =>{
-        const mthYr = document.querySelector('#monthAndYear').textContent
-        const day = document.querySelector('#current').textContent
-        const time = text.parentElement.textContent.trim()
-        const timestamp = moment(`${day} ${mthYr} ${time}`,'D MMMM YYYY hA').format('x')
-        text.value = (getData[timestamp])? getData[timestamp]: ''
-    })
+// function plannerData(){
+//     document.querySelectorAll('#description').forEach(text =>{
+//         const mthYr = document.querySelector('#monthAndYear').textContent
+//         const day = document.querySelector('#current').textContent
+//         const time = text.parentElement.textContent.trim()
+//         const timestamp = moment(`${day} ${mthYr} ${time}`,'D MMMM YYYY hA').format('x')
+//         text.value = (getData[timestamp])? getData[timestamp]: ''
+//     })
 
-    document.querySelector('.container-planner').addEventListener('change',function(){
-        const mthYr = document.querySelector('#monthAndYear').textContent
-        const day = document.querySelector('#current').textContent
-        const time = event.target.parentElement.textContent.trim()
-        const timestamp = moment(`${day} ${mthYr} ${time}`,'D MMMM YYYY hA').format('x')
-        getData[timestamp] = event.target.value
-        localStorage[sessionStorage.username] = JSON.stringify(getData)
-    })
-}
+//     document.querySelector('.container-planner').addEventListener('change',function(){
+//         const mthYr = document.querySelector('#monthAndYear').textContent
+//         const day = document.querySelector('#current').textContent
+//         const time = event.target.parentElement.textContent.trim()
+//         const timestamp = moment(`${day} ${mthYr} ${time}`,'D MMMM YYYY hA').format('x')
+//         getData[timestamp] = event.target.value
+//         localStorage[sessionStorage.username] = JSON.stringify(getData)
+//     })
+// }
 
 
 

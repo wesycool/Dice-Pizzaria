@@ -1,0 +1,55 @@
+<!-- Top Navigation -->
+<nav class="navbar whitefont">
+    <div class='col-6 no-padding'>
+        <h1 id='navbarTitle' ></h1>
+    </div>
+
+    <!-- Weather App Button -->
+    <div class='col no-padding'>
+        <div id="weatherApp">
+            <ul class="nav justify-content-end">
+                <li class="nav-item" id='timeStamp'></li>
+                <li class="nav-item">
+                    <button type="button" class="btn whitefont navbarInfo" id="forecastBtn" style="padding:0px !important" data-toggle="modal" data-target="#weatherModal"></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-12 col-sm-2 sidebar'>
+            <!-- Sidebar Navigation -->
+            <div id="sidebar" class="list-group ">
+                <div class='row'>
+                    {{#each tabName}}
+                        {{> staff/sidebar}}
+                    {{/each}}
+                </div>
+            </div>            
+        </div>
+        
+        {{!-- Content --}}
+        <div class='col'>
+            {{#each tabName}}
+                {{#if logout}}
+                {{else}}
+                    {{> staff/content}}
+                {{/if}}
+            {{/each}}
+        </div>
+
+    {{#each modal}}
+        {{> staff/modal}}
+    {{/each}}
+    </div>
+
+
+</div>
+
+<!-- Hidden Variables -->
+<div id='currentDay' style="display: none;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="./assets/weather.js"></script>

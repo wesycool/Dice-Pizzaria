@@ -20,6 +20,12 @@
         "partial":"staff/content/staff"
     },
     {
+      "id":"customer",
+      "name":"Customer",
+      "icon":"fa-user-cog",
+      "partial":"staff/content/customer"
+    },
+    {
         "id":"setting",
         "name":"Setting",
         "icon":"fa-cog",
@@ -56,5 +62,12 @@
       "body_content":"You are about to delete your account.",
       "btn_id":"deleteAccount",
       "btn_content":"Delete"
+    },
+    {
+      "modal_id":"staffModal",
+      "title_id":"staffHeader",
+      "body_id":"staffBody",
+      "btn_id":"staffEdit",
+      "btn_content":"Save"
     }] 
 }

@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require("express");
-const staffIndexJSON = require('../docs/staff-index.json')
-const staffColorJSON = require('../docs/staff-color.json')
+const staffIndexJSON = require('../db/staff-index.json')
+const staffColorJSON = require('../db/staff-color.json')
 
 const router = express.Router();
 

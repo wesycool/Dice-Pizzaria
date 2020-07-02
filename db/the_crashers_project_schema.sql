@@ -34,7 +34,7 @@ CREATE TABLE order_info (
 	status VARCHAR(30),
 	transaction_id int,
 	product_id int,
-	ingredient VARCHAR(255),
+	addinfo VARCHAR(255),
 	quantity int,
 	price DECIMAL(10,2),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -68,6 +68,8 @@ CREATE TABLE staff (
 	phone VARCHAR(20),
 	role_id INT,
 	manager_id INT,
+	theme VARCHAR(20),
+	units VARCHAR(8),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

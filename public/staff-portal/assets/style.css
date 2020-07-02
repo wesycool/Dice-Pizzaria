@@ -42,7 +42,14 @@ h1{
     width:100%
 }
 
+#content{
+    overflow: scroll; 
+    height:85vh
+}
 
+#navbarTitle{
+    font-size: xx-large;
+}
 
 /* For Mobile */
 @media screen and (orientation: portrait) and (max-width: 768px){
@@ -69,6 +76,22 @@ h1{
         font-size: 4vw;
     }
     
+    #navbarTitle{
+        font-size: larger;
+    }
+    #forecastBtn{
+        font-size: x-small;
+    }
+    
+    #weatherIcon{
+        width:25px;
+    }
+    #content{
+        height:80vh;
+    }
+    #timeStamp{
+        display:inline;
+    }
 }
 
 /* For iPad */

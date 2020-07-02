@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const staffIndexJSON = require('../docs/staff-index.json')
 const staffColorJSON = require('../docs/staff-color.json')
@@ -40,6 +41,11 @@ router.get('/staff-portal/api/staff', function(req,res){
 
 router.get('/staff-portal/api/color', function(req,res){
   res.send(staffColorJSON)
+})
+
+
+router.get('/staff-portal/api/weather-key', function(req,res){
+  res.send({key:process.env.WEATHER_API})
 })
 
 router.get("/staff-portal/login", function(req, res) {

@@ -1,18 +1,14 @@
 <!-- Top Navigation -->
 <nav class="navbar whitefont">
     <div class='col-6 no-padding'>
-        <h1 id='navbarTitle' ></h1>
+        <div id='navbarTitle' ></div>
     </div>
 
     <!-- Weather App Button -->
     <div class='col no-padding'>
-        <div id="weatherApp">
-            <ul class="nav justify-content-end">
-                <li class="nav-item" id='timeStamp'></li>
-                <li class="nav-item">
-                    <button type="button" class="btn whitefont navbarInfo" id="forecastBtn" style="padding:0px !important" data-toggle="modal" data-target="#weatherModal"></button>
-                </li>
-            </ul>
+        <div class='row justify-content-end' id="weatherApp">
+            <div class='col-12' id='timeStamp'></div>
+            <div class='col btn btn-sm whitefont navbarInfo' style='text-align:end' id="forecastBtn" data-toggle="modal" data-target="#weatherModal"></div>
         </div>
     </div>
 

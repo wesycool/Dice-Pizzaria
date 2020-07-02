@@ -5,17 +5,6 @@ const staffColorJSON = require('../db/staff-color.json')
 
 const router = express.Router();
 
-
-// Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-    res.render("index");
-});
-
-
-router.get("/staff-portal/", function(req, res) {
-  res.render("staff-index", staffIndexJSON);
-});
-
 //testing data
 const staff =[
   {id:"1",first_name:"Chet",last_name:"M",role:"Intern",department:"Information Technology"},
@@ -35,6 +24,23 @@ const staff =[
   {id:"15",first_name:"Moni",last_name:"B",role:"Intern",department:"Information Technology"}
 ]
 
+// Create all our routes and set up logic within those routes where required.
+router.get("/", function(req, res) {
+    res.render("index");
+});
+
+router.get("/staff-portal/login", function(req, res) {
+  res.render("staff-login");
+});
+
+router.get("/staff-portal/", function(req, res) {
+  res.render("staff-index", staffIndexJSON);
+});
+
+router.get("/staff-portal/dashboard", function(req, res) {
+  res.render("staff-dashboard", {staff});
+});
+
 router.get('/staff-portal/api/staff', function(req,res){
   res.send(staff)
 })
@@ -48,9 +54,9 @@ router.get('/staff-portal/api/weather-key', function(req,res){
   res.send({key:process.env.WEATHER_API})
 })
 
-router.get("/staff-portal/login", function(req, res) {
-  res.render("staff-login");
-});
+
+
+
 
 // Export routes for server.js to use.
 module.exports = router;

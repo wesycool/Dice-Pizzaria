@@ -6,3 +6,6 @@ node_modules/
 .env
 # other files to ignore
 package-lock.json
+
+# ignore liveshare settings folder
+.vscode/

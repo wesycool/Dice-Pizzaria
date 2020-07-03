@@ -13,17 +13,17 @@ async function staffData(){
                 <td>${data.first_name} ${data.last_name}</td>
                 <td>${data.role}</td>
                 <td>
-                    <i class="btn btn-secondary btn-sm fas fa-user-edit edit" data-toggle="modal" data-target="#staffModal" id="${idx}"></i>
-                    <i class="btn btn-secondary btn-sm fas fa-calendar-alt assign" data-toggle="modal" data-target="#staffModal" id="${idx}"></i>   
+                    <i class="btn btn-secondary btn-sm fas fa-user-edit staffEdit" data-toggle="modal" data-target="#staffModal" id="${idx}"></i>
+                    <i class="btn btn-secondary btn-sm fas fa-calendar-alt staffAssign" data-toggle="modal" data-target="#staffModal" id="${idx}"></i>   
                 </td>
             </tr>`
         }
 
-        document.querySelectorAll('.edit').forEach( (edit) => 
+        document.querySelectorAll('.staffEdit').forEach( (edit) => 
             edit.addEventListener('click', () => editStaffModal(getData[event.target.id]))
         )
-        document.querySelectorAll('.assign').forEach( (edit) => 
-            edit.addEventListener('click', () => assignStaffModal(getData[event.target.id]))
+        document.querySelectorAll('.staffAssign').forEach( (assign) => 
+            assign.addEventListener('click', () => assignStaffModal(getData[event.target.id]))
         )
     })
 }

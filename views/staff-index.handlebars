@@ -7,8 +7,9 @@
     <!-- Weather App Button -->
     <div class='col no-padding'>
         <div class='row justify-content-end' id="weatherApp">
+            <div class='col btn btn-sm whitefont navbarInfo' id="forecastBtn" data-toggle="modal" data-target="#weatherModal"></div>
             <div class='col-12' id='timeStamp'></div>
-            <div class='col btn btn-sm whitefont navbarInfo' style='text-align:end' id="forecastBtn" data-toggle="modal" data-target="#weatherModal"></div>
+            <div class='col-12' id='timeStamp-mobile'></div>
         </div>
     </div>
 
@@ -19,10 +20,19 @@
         <div class='col-12 col-sm-2 sidebar'>
             <!-- Sidebar Navigation -->
             <div id="sidebar" class="list-group ">
-                <div class='row'>
+                <div class='row table-responsive-sm'>
                     {{#each tabName}}
                         {{> staff/sidebar}}
                     {{/each}}
+
+                    <table id='sidebar-mobile'>
+                        <tr>
+                            {{#each tabName}}
+                                {{> staff/sidebar-mobile}}
+                            {{/each}}
+                        </tr>
+                    </table>
+
                 </div>
             </div>            
         </div>
@@ -45,5 +55,6 @@
 
 </div>
 
-<script src="./assets/staff-content.js"></script>
-<script src="./assets/weather.js"></script>
+<script src="./assets/js/staff-content.js"></script>
+<script src="./assets/js/product-content.js"></script>
+<script src="./assets/js/weather.js"></script>

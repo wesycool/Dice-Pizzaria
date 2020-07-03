@@ -8,7 +8,7 @@ function getLocation(units) {
         await fetch(`./api/weather/${units}/${latitude}/${longitude}`)
         .then(res => res.json()).then( ({main:{temp},weather:[{icon}],name}) => {
             const weatherIcon = `<img src='http://openweathermap.org/img/wn/${icon}.png' id='weatherIcon'>`
-            weatherBtn.innerHTML = `${temp}${conversion}${weatherIcon}`;
+            weatherBtn.innerHTML = `${temp.toFixed(1)}${conversion}${weatherIcon}`;
             document.querySelector("#modalHeader").innerHTML = `${name} 5-Day Local Forecast`;
         })
 
@@ -30,7 +30,13 @@ function getLocation(units) {
                             ${moment(dt,"X").format('L')} 
                         </div>
                         <div class="col" style="margin-top: 35px;">
-                            High: ${max}${conversion} Low: ${min}${conversion} <br> Description: ${description}
+                            <div class='row'>
+                                <div class='col-5 offset-1'>High: ${max.toFixed(1)}${conversion}</div>
+                                <div class='col-5'>Low: ${min.toFixed(1)}${conversion}</div>
+                            </div>
+                            <div class='row'>
+                                <div class='col'>Description: ${description}</div>
+                            </div>
                         </div>
                     </div>`
                 }
@@ -41,5 +47,8 @@ function getLocation(units) {
 
 
 //Christine - Add current time to NavBar that automatically updates every second.
-setInterval(() => {document.querySelector("#timeStamp").innerHTML = moment().format('L LTS')}, 1000);
+setInterval(() => {
+    document.querySelector("#timeStamp").innerHTML = moment().format('dddd, MMMM D YYYY, LTS')
+    document.querySelector("#timeStamp-mobile").innerHTML = moment().format('L LTS')
+}, 1000);
 

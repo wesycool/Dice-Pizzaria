@@ -1,7 +1,9 @@
 require('dotenv').config()
 const express = require("express");
 const staffIndexJSON = require('../db/staff-index.json')
-const staffColorJSON = require('../db/staff-color.json')
+const staffColorJSON = require('../db/staff-color.json');
+const fetch = require('node-fetch')
+
 
 const router = express.Router();
 
@@ -50,12 +52,12 @@ router.get('/staff-portal/api/color', function(req,res){
 })
 
 
-router.get('/staff-portal/api/weather-key', function(req,res){
-  res.send({key:process.env.WEATHER_API})
+router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
+  const {api, units, lat, lon} = req.params
+  const url = `https://api.openweathermap.org/data/2.5/${api}?units=${units}&lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}`
+  const getWeather= await fetch(url).then(data => data.json())
+  res.send(getWeather)
 })
-
-
-
 
 
 // Export routes for server.js to use.

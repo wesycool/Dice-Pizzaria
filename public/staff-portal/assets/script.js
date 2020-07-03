@@ -19,7 +19,6 @@ async function startup(){
     if (!sessionStorage.username) window.location.href = './login/';
     else {
         await getColor()
-        await getWeatherAPI()
         document.getElementById('username').value = username
         document.querySelector('#profileName').value = name
         document.getElementById(selectColor).checked = true

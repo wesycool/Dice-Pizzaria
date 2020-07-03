@@ -116,6 +116,7 @@ h1{
         height: calc(100vh - 2.5rem);
         max-width: 70px !important;
     }
+
     .sidebar-col, #timeStamp{
         display: inline;
     }
@@ -123,6 +124,7 @@ h1{
         display: none;
     }
 }
+
 
 
 /* For Mobile/iPad Landscape Mode */

@@ -7,8 +7,9 @@
     <!-- Weather App Button -->
     <div class='col no-padding'>
         <div class='row justify-content-end' id="weatherApp">
+            <div class='col btn btn-sm whitefont navbarInfo' id="forecastBtn" data-toggle="modal" data-target="#weatherModal"></div>
             <div class='col-12' id='timeStamp'></div>
-            <div class='col btn btn-sm whitefont navbarInfo' style='text-align:end' id="forecastBtn" data-toggle="modal" data-target="#weatherModal"></div>
+            <div class='col-12' id='timeStamp-mobile'></div>
         </div>
     </div>
 
@@ -31,7 +32,7 @@
                             {{/each}}
                         </tr>
                     </table>
-
+                            
                 </div>
             </div>            
         </div>

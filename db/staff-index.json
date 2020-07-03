@@ -26,6 +26,12 @@
       "partial":"staff/content/customer"
     },
     {
+      "id":"product",
+      "name":"Product",
+      "icon":"fa-pizza-slice",
+      "partial":"staff/content/product"
+    },
+    {
         "id":"setting",
         "name":"Setting",
         "icon":"fa-cog",

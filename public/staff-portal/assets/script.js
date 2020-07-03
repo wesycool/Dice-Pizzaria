@@ -7,7 +7,7 @@ let color
 
 //Get List of Colors
 async function getColor(){
-    await fetch('/staff-portal/api/color')
+    await fetch('./assets/staff-color.json')
     .then(res => res.json())
     .then(data => color = data)
 }

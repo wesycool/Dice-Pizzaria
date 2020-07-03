@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require("express");
 const staffIndexJSON = require('../db/staff-index.json')
-const staffColorJSON = require('../db/staff-color.json');
 const fetch = require('node-fetch')
 
 
@@ -45,10 +44,6 @@ router.get("/staff-portal/dashboard", function(req, res) {
 
 router.get('/staff-portal/api/staff', function(req,res){
   res.send(staff)
-})
-
-router.get('/staff-portal/api/color', function(req,res){
-  res.send(staffColorJSON)
 })
 
 

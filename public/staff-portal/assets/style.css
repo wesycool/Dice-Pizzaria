@@ -51,6 +51,10 @@ h1{
     font-size: xx-large;
 }
 
+#sidebar-mobile{
+    display: none;
+}
+
 /* For Mobile */
 @media screen and (orientation: portrait) and (max-width: 768px){
     .sidebar{
@@ -91,6 +95,14 @@ h1{
     }
     #timeStamp{
         display:inline;
+    }
+
+    .sidebar-col{
+        display:none;
+    }
+
+    #sidebar-mobile{
+        display: inherit;
     }
 }
 

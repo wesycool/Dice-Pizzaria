@@ -19,10 +19,19 @@
         <div class='col-12 col-sm-2 sidebar'>
             <!-- Sidebar Navigation -->
             <div id="sidebar" class="list-group ">
-                <div class='row'>
+                <div class='row table-responsive-sm'>
                     {{#each tabName}}
                         {{> staff/sidebar}}
                     {{/each}}
+
+                    <table id='sidebar-mobile'>
+                        <tr>
+                            {{#each tabName}}
+                                {{> staff/sidebar-mobile}}
+                            {{/each}}
+                        </tr>
+                    </table>
+
                 </div>
             </div>            
         </div>

@@ -62,6 +62,7 @@ h1{
     padding:0px
 }
 
+
 /* For Mobile */
 @media screen and (orientation: portrait) and (max-width: 768px){
     .sidebar{

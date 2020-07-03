@@ -7,7 +7,7 @@ let color
 
 //Get List of Colors
 async function getColor(){
-    await fetch('./assets/staff-color.json')
+    await fetch('./assets/json/staff-color.json')
     .then(res => res.json())
     .then(data => color = data)
 }
@@ -22,8 +22,9 @@ async function startup(){
         document.getElementById('username').value = username
         document.querySelector('#profileName').value = name
         document.getElementById(selectColor).checked = true
-
+        
         getLocation(units)
+        setInterval(() => {getLocation(units)},1000*60*5)
         themeChange(selectColor, false)
     }
 }
@@ -36,9 +37,10 @@ sidebar.addEventListener('click', async function(){
         document.querySelectorAll(`.display-row`).forEach(value => {
             value.style.display = (value.id == `${event.target.id}-row`) ? 'inline' : 'none'
         })
-
-        if (event.target.id == 'staff'){
-            await staffData()
+        
+        switch (event.target.id){
+            case 'staff': await staffData(); break;
+            case 'product': await productData(); break;
         }
     }
 })
@@ -81,7 +83,6 @@ function themeChange( id , isSetting){
 
     metricChange(id)
     buttonColor(id)
-    // calendarColor(selectColor, Number(moment().format('D')))
 }
 
 //Setting Weather Unit Change Function
@@ -168,7 +169,3 @@ function exit(id){
     sessionStorage.clear()
     location.reload()
 }
-
-
-
-

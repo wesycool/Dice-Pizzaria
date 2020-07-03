@@ -1,79 +1,86 @@
 {
-    "tabName": [
-    {
-        "id":"home",
-        "name":"Home",
-        "icon":"fa-home",
-        "partial":"staff/content/home",
-        "home":true
-    },
-    {
-        "id":"calendar",
-        "name":"Time Sheet",
-        "icon":"fa-calendar-alt",
-        "partial":"staff/content/calendar"
-    },
-    {
-        "id":"staff",
-        "name":"Staff",
-        "icon":"fa-users",
-        "partial":"staff/content/staff"
-    },
-    {
-      "id":"customer",
-      "name":"Customer",
-      "icon":"fa-store",
-      "partial":"staff/content/customer"
-    },
-    {
-      "id":"product",
-      "name":"Product",
-      "icon":"fa-pizza-slice",
-      "partial":"staff/content/product"
-    },
-    {
-        "id":"setting",
-        "name":"Setting",
-        "icon":"fa-cog",
-        "partial":"staff/content/setting"
-    },
-    {
-        "id":"logout",
-        "name":"Log Out",
-        "icon":"fa-sign-out-alt",
-        "logout":true
-    }],
-    
-    "modal": [
-    {
-      "modal_id":"weatherModal",
-      "title_id":"modalHeader",
-      "title_content":"Weather Forecast",
-      "body_id":"forecast"
-    },
-    {
-      "modal_id":"logoutModal",
-      "title_id":"logoutHeader",
-      "title_content":"Log Out",
-      "body_id":"logoutContent",
-      "body_content":"You are about to log out.",
-      "btn_id":"confirmLogout",
-      "btn_content":"Log Out"
-    },
-    {
-      "modal_id":"deleteModal",
-      "title_id":"deleteHeader",
-      "title_content":"Delete Account",
-      "body_id":"deleteBody",
-      "body_content":"You are about to delete your account.",
-      "btn_id":"deleteAccount",
-      "btn_content":"Delete"
-    },
-    {
-      "modal_id":"staffModal",
-      "title_id":"staffHeader",
-      "body_id":"staffBody",
-      "btn_id":"staffEdit",
-      "btn_content":"Save"
-    }] 
+  "tabName": [
+  {
+      "id":"home",
+      "name":"Home",
+      "icon":"fa-home",
+      "partial":"staff/content/home",
+      "home":true
+  },
+  {
+      "id":"calendar",
+      "name":"Time Sheet",
+      "icon":"fa-calendar-alt",
+      "partial":"staff/content/calendar"
+  },
+  {
+      "id":"staff",
+      "name":"Staff",
+      "icon":"fa-users",
+      "partial":"staff/content/staff"
+  },
+  {
+    "id":"customer",
+    "name":"Customer",
+    "icon":"fa-store",
+    "partial":"staff/content/customer"
+  },
+  {
+    "id":"product",
+    "name":"Product",
+    "icon":"fa-pizza-slice",
+    "partial":"staff/content/product"
+  },
+  {
+      "id":"setting",
+      "name":"Setting",
+      "icon":"fa-cog",
+      "partial":"staff/content/setting"
+  },
+  {
+      "id":"logout",
+      "name":"Log Out",
+      "icon":"fa-sign-out-alt",
+      "logout":true
+  }],
+  
+  "modal": [
+  {
+    "modal_id":"weatherModal",
+    "title_id":"modalHeader",
+    "title_content":"Weather Forecast",
+    "body_id":"forecast"
+  },
+  {
+    "modal_id":"logoutModal",
+    "title_id":"logoutHeader",
+    "title_content":"Log Out",
+    "body_id":"logoutContent",
+    "body_content":"You are about to log out.",
+    "btn_id":"confirmLogout",
+    "btn_content":"Log Out"
+  },
+  {
+    "modal_id":"deleteModal",
+    "title_id":"deleteHeader",
+    "title_content":"Delete Account",
+    "body_id":"deleteBody",
+    "body_content":"You are about to delete your account.",
+    "btn_id":"deleteAccount",
+    "btn_content":"Delete"
+  },
+  {
+    "modal_id":"staffModal",
+    "title_id":"staffHeader",
+    "body_id":"staffBody",
+    "btn_id":"staffEdit",
+    "btn_content":"Save"
+  },
+  {
+    "modal_id":"productModal",
+    "title_id":"sproductHeader",
+    "body_id":"productBody",
+    "btn_id":"productEdit",
+    "btn_content":"Save"
+  }] 
 }

@@ -51,3 +51,4 @@ setInterval(() => {
     document.querySelector("#timeStamp").innerHTML = moment().format('dddd, MMMM D YYYY, LTS')
     document.querySelector("#timeStamp-mobile").innerHTML = moment().format('L LTS')
 }, 1000);
+

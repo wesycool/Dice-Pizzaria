@@ -36,7 +36,7 @@ h1{
     text-align: end;
 }
 
-#timeStamp{
+#timeStamp, #timeStamp-mobile{
     font-size:10px;
     text-align:right;
     width:100%
@@ -51,9 +51,17 @@ h1{
     font-size: xx-large;
 }
 
-#sidebar-mobile{
+#sidebar-mobile, #timeStamp-mobile{
     display: none;
 }
+
+#forecastBtn{
+    font-size: large;
+    text-align: end;
+    border:0px;
+    padding:0px
+}
+
 
 /* For Mobile */
 @media screen and (orientation: portrait) and (max-width: 768px){
@@ -67,7 +75,7 @@ h1{
         margin: 0px;
     }
 
-    .side-name{
+    .side-name, .sidebar-col, #timeStamp{
         display: none;
     }
 
@@ -84,24 +92,20 @@ h1{
         font-size: larger;
     }
     #forecastBtn{
-        font-size: x-small;
+        font-size: small;
     }
     
     #weatherIcon{
-        width:25px;
+        width:30px;
     }
     #content{
         height:80vh;
     }
-    #timeStamp{
+    #timeStamp-mobile{
         display:inline;
     }
 
-    .sidebar-col{
-        display:none;
-    }
-
-    #sidebar-mobile{
+    #sidebar-mobile {
         display: inherit;
     }
 }
@@ -112,8 +116,6 @@ h1{
         height: calc(100vh - 2.5rem);
         max-width: 70px !important;
     }
-
-
 }
 
 

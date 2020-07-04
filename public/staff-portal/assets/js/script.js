@@ -40,6 +40,7 @@ sidebar.addEventListener('click', async function(){
         
         switch (event.target.id){
             case 'staff': await staffData(); break;
+            case 'customer': await customerData(); break;
             case 'product': await productData(); break;
         }
     }

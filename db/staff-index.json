@@ -78,7 +78,7 @@
   },
   {
     "modal_id":"productModal",
-    "title_id":"sproductHeader",
+    "title_id":"productHeader",
     "body_id":"productBody",
     "btn_id":"productEdit",
     "btn_content":"Save"

@@ -62,7 +62,6 @@ h1{
     padding:0px
 }
 
-
 /* For Mobile */
 @media screen and (orientation: portrait) and (max-width: 768px){
     .sidebar{
@@ -116,7 +115,6 @@ h1{
         height: calc(100vh - 2.5rem);
         max-width: 70px !important;
     }
-
     .sidebar-col, #timeStamp{
         display: inline;
     }
@@ -124,7 +122,6 @@ h1{
         display: none;
     }
 }
-
 
 
 /* For Mobile/iPad Landscape Mode */

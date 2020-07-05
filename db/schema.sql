@@ -20,6 +20,7 @@ CREATE TABLE client (
 CREATE Table transactions (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	client_id int,
+    status VARCHAR(20),
 	isDelivery BOOLEAN,
 	isPaid BOOLEAN,
 	gross_total DECIMAL(10,2),
@@ -31,12 +32,11 @@ CREATE Table transactions (
 
 CREATE TABLE order_info (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	status VARCHAR(30),
 	transaction_id int,
 	product_id int,
 	addinfo VARCHAR(255),
 	quantity int,
-	price DECIMAL(10,2),
+	order_price DECIMAL(10,2),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -50,8 +50,8 @@ CREATE TABLE tax (
 CREATE TABLE products (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	description VARCHAR(255),
-	size INT,
-	price DECIMAL(10,2),
+	size VARCHAR(10),
+	set_price DECIMAL(10,2),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -89,8 +89,7 @@ CREATE TABLE timestamp (
 CREATE TABLE timesheet (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	staff_id INT,
-	start_time DATETIME,
-	end_time DATETIME,
+	workdays VARCHAR(255),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

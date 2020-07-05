@@ -1,3 +1,5 @@
+USE the_crashers_db;
+
 -- client ( id, email, password, firt_name, last_name, address, city, province, postal_code, phone, createdAt )
 -- INSERT INTO client VALUES(0, email, password, first_name, last_name, address, city, province, postal_code, phone, default);
 INSERT INTO client VALUES(0, "fil@asdsa.com", "password", "Fil", "L", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
@@ -9,8 +11,8 @@ INSERT INTO department VALUES(0, "Main Location 1", default);
 
 -- order_info ( id, status, transaction_id, product_id, ingredient, quantity, price, createdAt )
 -- INSERT INTO order_info VALUES(0, "status", transaction_id, product_id, "addinfo", quantity, price, default);
-INSERT INTO order_info VALUES(0, "Delivering", 1, 1, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, "Delivering", 1, 2, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, 1, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 1, 2, "Additional information", 2, 7.99, default);
 
 -- products ( id, description, size, price, createdAt )
 -- INSERT INTO products VALUES(0, "description", "size", price, default);
@@ -75,4 +77,24 @@ INSERT INTO tax VALUES(0, "YT", 5, default);
 
 -- transactions ( id, client_id, isDelivery, isPaid, gross_total, tax_id, tax_amount, net_total, createdAt )
 -- INSERT INTO transactions VALUES(0, client_id, isDelivery, isPaid, gross_total, tax_id, tax_amount, net_total, default);
-INSERT INTO transactions VALUES(1, 1, TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+INSERT INTO transactions VALUES(0, 1, "Pending",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+INSERT INTO transactions VALUES(0, 2, "Pending",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+INSERT INTO transactions VALUES(0, 3, "Pending",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+INSERT INTO transactions VALUES(0, 4, "Pending",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+INSERT INTO transactions VALUES(0, 5, "Pending",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+
+
+-- more test data
+INSERT INTO order_info VALUES(0, 2, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 2, 2, "Additional information", 2, 7.99, default);
+
+INSERT INTO order_info VALUES(0, 3, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 3, 2, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, 3, 3, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 3, 4, "Additional information", 2, 7.99, default);
+
+INSERT INTO order_info VALUES(0, 4, 5, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 4, 6, "Additional information", 2, 7.99, default);
+
+INSERT INTO order_info VALUES(0, 5, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, 5, 4, "Additional information", 2, 7.99, default); 

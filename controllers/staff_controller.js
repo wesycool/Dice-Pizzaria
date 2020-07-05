@@ -92,6 +92,43 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   res.send(getWeather)
 })
 
+// pat testing
+const theCrashers = require("../models/theCrashers");
+
+router.get('/pat-test/:tableName', async (req,res) => {
+
+  const {tableName} = req.params
+  
+  const list = (tableName == "alltrans") ?  await theCrashers.getAllTrans() :  await theCrashers.getTable(tableName)
+
+  res.send(list)
+
+  console.log(list)
+
+})
+
+router.get('/pat-test/:id/:status', async (req, res) => {
+  const {id, status} = req.params
+
+  console.log(`-- id: ${id}  status: ${status}`)
+
+  const test = "Transaction status updated !"
+
+  await theCrashers.updateStatus(id, status)
+
+  res.send(test)
+})
+
+router.get('/transactionitems/:transactionNum', async (req,res) => {
+
+  const {transactionNum} = req.params
+  const products = await theCrashers.getPrdTrans(transactionNum)
+
+  // console.log(products)
+
+  res.send(products)
+
+})
 
 
 // Export routes for server.js to use.

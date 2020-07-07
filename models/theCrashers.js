@@ -20,4 +20,12 @@ async function getAllTrans () {
     // console.log(transNum)
 }
 
-module.exports = { getTable, updateStatus, getPrdTrans, getAllTrans }
+function addNow (table, items) {
+    console.log(">> crashersAddNow - table", table)
+    console.log(">> crashersAddNow - items", items)
+
+    return orm.insertDB(table, items)
+} 
+
+
+module.exports = { getTable, updateStatus, getPrdTrans, getAllTrans, addNow }

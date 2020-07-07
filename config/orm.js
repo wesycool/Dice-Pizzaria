@@ -11,10 +11,16 @@ function updateOne( id, field, value ) {
         [ { [field]: value }, id ] )
 }
 
-// SELECT transaction_id, product_id, description, size, quantity FROM order_info o LEFT JOIN products p ON o.product_id = p.id;
+// select join
 function selectJoin(tableOne, tableTwo, matchOne, matchTwo) {
     return  db.query('SELECT * FROM ?? LEFT JOIN ?? ON ?? = ??',
         [ tableOne, tableTwo, matchOne, matchTwo ] )
 }
 
-module.exports = { selectAll, selectJoin, updateOne }
+// 
+function insertDB( table, values) {
+    return db.query( "INSERT INTO ?? SET ? ", 
+        [table, values] )
+}
+
+module.exports = { selectAll, selectJoin, updateOne, insertDB }

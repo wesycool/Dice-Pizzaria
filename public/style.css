@@ -5,3 +5,7 @@ h2 {
 .col{
     margin-bottom: 25px;
 }
+
+.dropdown{
+    display: none;
+}

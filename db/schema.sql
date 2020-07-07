@@ -10,8 +10,10 @@ CREATE TABLE client (
 	first_name VARCHAR(255),
 	last_name VARCHAR(255),
 	address VARCHAR(255),
+    address_2 VARCHAR(255),
+    country VARCHAR(255),
+    province VARCHAR(2),
 	city VARCHAR(255),
-	province VARCHAR(2),
 	postal_code VARCHAR(6),
 	phone VARCHAR(20),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

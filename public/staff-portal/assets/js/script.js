@@ -5,20 +5,15 @@ let {name, password, theme, units} = getData
 let selectColor = theme || 'default'
 let color
 
-//Get List of Colors
-async function getColor(){
-    await fetch('./assets/json/staff-color.json')
-    .then(res => res.json())
-    .then(data => color = data)
-}
-
 startup()
 
 //Loading Theme at Startup
 async function startup(){
     if (!sessionStorage.username) window.location.href = './login/';
     else {
-        await getColor()
+        // const profile = await fetch(`./staff-portal/api/staff/${username}`).then(res => res.json()).then(data => {return data})
+        
+        color = await fetch('./assets/json/staff-color.json').then(res => res.json()).then(data => {return data})
         document.getElementById('username').value = username
         document.querySelector('#profileName').value = name
         document.getElementById(selectColor).checked = true

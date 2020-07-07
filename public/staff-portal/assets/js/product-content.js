@@ -1,5 +1,5 @@
 async function productData(){
-    const fetchData = await fetch('/staff-portal/api/product')
+    const fetchData = await fetch('/staff-portal/api/table/products')
     const productBody = document.querySelector('#product_body')
     productBody.innerHTML = ''
 
@@ -10,7 +10,7 @@ async function productData(){
             `<tr>
                 <th scope="row">${data.id}</th>
                 <td>${data.description}</td>
-                <td>${data.price}</td>
+                <td>${data.set_price}</td>
                 <td>
                     <i class="btn btn-secondary btn-sm fas fa-pen productEdit" data-toggle="modal" data-target="#productModal" id="${idx}"></i>
                     <i class="btn btn-secondary btn-sm fas fa-archive productArchive" data-toggle="modal" data-target="#productModal" id="${idx}"></i>   
@@ -32,7 +32,7 @@ document.querySelector('#addProduct').addEventListener('click', () => editProduc
 
 
 function editProductModal(data){
-    const {id,description,price} = data || {id:'',description:'',price:''}
+    const {id,description,set_price} = data || {id:'',description:'',set_price:''}
 
     document.querySelector('#productHeader').textContent = data ? `${id}. ${description}` : 'New Product'
     document.querySelector('#productBody').innerHTML =
@@ -49,7 +49,7 @@ function editProductModal(data){
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" id="productPrice" value=${price}>
+                <input type="text" class="form-control" id="productPrice" value=${set_price}>
             </div>
         </div>
         <div class="form-group">

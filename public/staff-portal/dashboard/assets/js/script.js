@@ -1,7 +1,7 @@
 // Get transactions data
 async function getTransaction() {
-    const transactions = await fetch("/staff-portal/dashboard/transactions").then(response => response.json())
-    const listProd = await fetch(`/staff-portal/dashboard/alltrans`).then(response => response.json())
+    const transactions = await fetch("/staff-portal/api/table/transactions").then(response => response.json())
+    const listProd = await fetch(`/staff-portal/api/join/alltrans`).then(response => response.json())
     // .then(data => {console.log(data)})
 
     document.querySelector("#transactions").innerHTML = ``
@@ -57,7 +57,7 @@ async function getTransaction() {
 
 // Update DB with status
 async function updateStatus(id, status) {
-    await fetch(`/staff-portal/dashboard/${id}/${status}`)
+    await fetch(`/staff-portal/api/post/${id}/${status}`)
     await getTransaction()
 }
 

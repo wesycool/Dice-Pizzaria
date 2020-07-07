@@ -1,12 +1,12 @@
 USE the_crashers_db;
 
--- client ( id, email, password, firt_name, last_name, address, city, province, postal_code, phone, createdAt )
+-- client ( id, email, password, firt_name, last_name, address, address_2, city, province, postal_code, phone, createdAt )
 -- INSERT INTO client VALUES(0, email, password, first_name, last_name, address, city, province, postal_code, phone, default);
-INSERT INTO client VALUES(0, "fil@asdsa.com", "password", "Fil", "L", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
-INSERT INTO client VALUES(0, "daniel@asdsa.com", "password", "Daniel", "C", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
-INSERT INTO client VALUES(0, "holly@asdsa.com", "password", "Holly", "A", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
-INSERT INTO client VALUES(0, "jolly@asdsa.com", "password", "Jolly", "B", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
-INSERT INTO client VALUES(0, "roger@asdsa.com", "password", "Roger", "C", "123 Streetname", "Toronto", "ON", "A1B2C3", "(123) 123-1234", default);
+INSERT INTO client VALUES(0, "fil@asdsa.com", "password", "Fil", "L", "123 Streetname", "", "Canada", "ON", "Toronto", "A1B2C3", "(123) 123-1234", default);
+INSERT INTO client VALUES(0, "daniel@asdsa.com", "password", "Daniel", "C", "123 Streetname", "", "Canada", "ON", "Toronto", "A1B2C3", "(123) 123-1234", default);
+INSERT INTO client VALUES(0, "holly@asdsa.com", "password", "Holly", "A", "123 Streetname", "", "Canada", "ON", "Toronto", "A1B2C3", "(123) 123-1234", default);
+INSERT INTO client VALUES(0, "jolly@asdsa.com", "password", "Jolly", "B", "123 Streetname", "", "Canada", "ON", "Toronto", "A1B2C3", "(123) 123-1234", default);
+INSERT INTO client VALUES(0, "roger@asdsa.com", "password", "Roger", "C", "123 Streetname", "", "Canada", "ON", "Toronto", "A1B2C3", "(123) 123-1234", default);
 
 -- department ( id, name, createdAt )
 -- INSERT INTO department VALUES(0, "name", default);

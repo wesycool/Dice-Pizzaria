@@ -70,5 +70,14 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
 })
 
 
+// Post Test
+app.post('/posttest', function(req, res){
+  console.log(req.body);      // your JSON
+  res.send("Received");    // echo the result back
+});
+
+
 // Export routes for server.js to use.
 module.exports = router;
+
+

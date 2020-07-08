@@ -42,12 +42,35 @@ router.get('/staff-portal/api/table/:tab/:field/:params', async (req,res) => {
   res.send(getData)
 })
 
-
 // Get Data of Joint Table
 router.get('/staff-portal/api/join/alltrans', async (req,res) => {
   const list = await models.getJoinAll()
   res.send(list)
 })
+
+// Update Setting Params
+router.put('/staff-portal/api/:col/:set_params/:where_params', (req,res) => {
+  models.updateByParams('staff',req.params.col,req.params.set_params,'email',req.params.where_params)
+})
+
+// Post Staff TimeSheet
+router.post('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
+  models.insertByParams('timesheet',req.params)
+})
+
+//Delete Staff TimeSheet
+router.delete('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
+  models.deleteByParams('timesheet',req.params)
+})
+
+// Get weather data - To fetch weather api data while hidding API key
+router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
+  const {api, units, lat, lon} = req.params
+  const url = `https://api.openweathermap.org/data/2.5/${api}?units=${units}&lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}`
+  const getWeather= await fetch(url).then(data => data.json())
+  res.send(getWeather)
+})
+
 
 
 
@@ -59,19 +82,8 @@ router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
   res.send(test)
 })
 
-
-
-// Get weather data - To fetch weather api data while hidding API key
-router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
-  const {api, units, lat, lon} = req.params
-  const url = `https://api.openweathermap.org/data/2.5/${api}?units=${units}&lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}`
-  const getWeather= await fetch(url).then(data => data.json())
-  res.send(getWeather)
-})
-
-
 // Post Test
-app.post('/posttest', function(req, res){
+router.post('/posttest', function(req, res){
   console.log(req.body);      // your JSON
   res.send("Received");    // echo the result back
 });

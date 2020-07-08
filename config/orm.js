@@ -7,10 +7,15 @@ const orm = {
     selectJoin:(tableOne, tableTwo, matchOne, matchTwo) => { return  db.query('SELECT * FROM ?? LEFT JOIN ?? ON ?? = ??', [ tableOne, tableTwo, matchOne, matchTwo ] )}, // select join
     
     // UPDATE FUNCTIONS
-    updateOne: ( field, value, id ) => { return db.query( 'UPDATE transactions SET ? WHERE id=?', [ {[field]: value}, id ] )}, // update an entry based on ID
+    updateByParams: (tableInput, set, where) => { return db.query( 'UPDATE ?? SET ? WHERE ?',[tableInput, set, where]) },
+    updateOne: (field, value, id ) => { return db.query( 'UPDATE transactions SET ? WHERE id=?', [ {[field]: value}, id ] )}, // update an entry based on ID
 
     // INSERT FUNCTIONS
-    insertDB: ( table, values) => { return db.query( "INSERT INTO ?? SET ? ", [table, values] )} //
+    insertByParams: (tableInput,values) => {return db.query('INSERT INTO ?? VALUES(0, ?, DEFAULT)',[tableInput, values])},
+    insertDB: (table, values) => { return db.query( "INSERT INTO ?? SET ? ", [table, values] )}, //
+
+    // DELETE FUNCTIONS
+    deleteByParams:(table, params1,params2) => { return db.query("DELETE FROM ?? WHERE ? AND ? ;", [table,params1,params2])}
 }
 
 module.exports = orm

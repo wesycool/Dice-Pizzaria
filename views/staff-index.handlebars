@@ -21,6 +21,11 @@
             <!-- Sidebar Navigation -->
             <div id="sidebar" class="list-group ">
                 <div class='row table-responsive-sm'>
+
+                    <div class='col col-xl-12 sidebar-col' id="welcome" >
+                        <a class="list-group-item list-group-item-action whitefont" id="welcome">Welcome Edmund</a>
+                    </div>
+                    
                     {{#each tabName}}
                         {{> staff/sidebar}}
                     {{/each}}
@@ -47,6 +52,7 @@
             {{/each}}
         </div>
 
+    {{!-- Modal --}}
     {{#each modal}}
         {{> staff/modal}}
     {{/each}}
@@ -55,6 +61,7 @@
 
 </div>
 
+<script src="./assets/js/calendar-content.js"></script>
 <script src="./assets/js/staff-content.js"></script>
 <script src="./assets/js/customer-content.js"></script>
 <script src="./assets/js/product-content.js"></script>

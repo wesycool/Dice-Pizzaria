@@ -40,7 +40,7 @@ function editProductModal(data){
         <div class="form-row">
             <label for="productDescription" class="col-form-label">Description:</label>
             <div class="form-group col">
-                <input type="text" class="form-control" id="productDescription" value=${description}>
+                <input type="text" class="form-control" id="productDescription" value='${description}'>
             </div>
         </div>
         <div class="form-row">
@@ -49,14 +49,34 @@ function editProductModal(data){
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" id="productPrice" value=${set_price}>
+                <input type="text" class="form-control" id="productPrice" value='${set_price}'>
             </div>
         </div>
         <div class="form-group">
-            <label for="productImage">Image:</label>
-            <input type="file" accept="image/*" class="form-control-file" id="productImage" capture>
+            <label for="productImage${id}">Image:</label>
+            <input type="file" accept="image/*" class="form-control-file" id="productImage${id}" capture>
+            <img src='' id="showProductImage${id}" style="width:100%">
         </div>
     </form>`
+
+
+    const files = document.querySelector(`#productImage${id}`)
+
+    // Show Image
+    files.addEventListener('change', (input) => {
+        let reader = new FileReader()
+        reader.onload = (event) => {document.querySelector(`#showProductImage${id}`).setAttribute('src',event.target.result)}
+        reader.readAsDataURL(input.target.files[0])
+    })
+
+    // Test Saving Image
+    // document.querySelector(`#productImageButton${id}`).addEventListener('click', (event) =>{
+    //     const formData = new FormData();
+    //     formData.append('files', files.files[0],`img${id}.jpg`)
+    //     console.log(formData)
+
+    //     fetch('/test', { method: 'POST', body: formData}).then((response) => { console.log(response) })
+    // })
 }
 
 function archiveProductModal(data){

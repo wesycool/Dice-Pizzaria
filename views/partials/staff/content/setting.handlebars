@@ -7,16 +7,22 @@
         <div class='col col-md-6'>
             
             <form class='form-row'>
-                <fieldset class='col-12' disabled>
-                    <div class="form-group ">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username">
+                <fieldset class='col-md-8' disabled>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                </fieldset>
+                <fieldset class='col-md-4' disabled>
+                    <div class="form-group">
+                        <label for="staffId">Staff ID</label>
+                        <input type="text" class="form-control" id="staffId">
                     </div>
                 </fieldset>
 
                 <div class="form-group col-md-6">
-                    <label for="profileName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="profileName">
+                    <label for="inputFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputLastName" class="form-label">Last Name</label>
@@ -33,19 +39,19 @@
                 <div class="form-group col-md-3">
                     <label for="inputState" class="form-label">Province</label>
                     <select id="inputState" class="form-control">
-                        <option>AB</option>
-                        <option>BC</option>
-                        <option>MB</option>
-                        <option>NB</option>
-                        <option>NL</option>
-                        <option>NS</option>
-                        <option>NT</option>
-                        <option>NU</option>
-                        <option>ON</option>
-                        <option>PE</option>
-                        <option>QC</option>
-                        <option>SK</option>
-                        <option>YT</option>
+                        <option class='setting-city' id='AB'>AB</option>
+                        <option class='setting-city' id='BC'>BC</option>
+                        <option class='setting-city' id='MB'>MB</option>
+                        <option class='setting-city' id='NB'>NB</option>
+                        <option class='setting-city' id='NL'>NL</option>
+                        <option class='setting-city' id='NS'>NS</option>
+                        <option class='setting-city' id='NT'>NT</option>
+                        <option class='setting-city' id='NU'>NU</option>
+                        <option class='setting-city' id='ON'>ON</option>
+                        <option class='setting-city' id='PE'>PE</option>
+                        <option class='setting-city' id='QC'>QC</option>
+                        <option class='setting-city' id='SK'>SK</option>
+                        <option class='setting-city' id='YT'>YT</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -68,7 +74,7 @@
                     <label class="form-check-label" for="showPassword">Show Password</label>
                 </div>
                 <div class="form-group form-check col-12">
-                    <button type="button" class="btn btn-color whitefont" id='saveProfile'>Save</button>
+                    <button type="button" class="btn btn-color" id='saveProfile'><span style='color:white !important'>Save</span></button>
                     <button type="button" class="btn btn-danger" id='deleteProfile' data-toggle="modal" data-target="#deleteModal">Delete</button>
                 </div>
             </form>
@@ -83,22 +89,22 @@
         <div class='col-12 col-sm-2 col-lg-1'>
             <label>Theme:</label>
         </div>
-        <div class='col'>
+        <div class='col' id='radioTheme'>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="default" id="default" value="option1">
-                <label class="form-check-label" for="default">Default</label>
+                <label class="form-check-label" for="default" id="default">Default</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="ponder" id="ponder" value="option2">
-                <label class="form-check-label" for="ponder">Ponder</label>
+                <label class="form-check-label" for="ponder" id="ponder">Ponder</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sunset" id="sunset" value="option3">
-                <label class="form-check-label" for="sunset">Shimmering Sunset</label>
+                <label class="form-check-label" for="sunset" id="sunset">Shimmering Sunset</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="calm" id="calm" value="option4">
-                <label class="form-check-label" for="calm">Calm It Down</label>
+                <label class="form-check-label" for="calm" id="calm">Calm It Down</label>
             </div>
         </div>
     </div>

@@ -118,7 +118,7 @@ h1{
     .sidebar-col, #timeStamp{
         display: inline;
     }
-    #sidebar-mobile, #timeStamp-mobile{
+    #sidebar-mobile, #timeStamp-mobile, #welcome{
         display: none;
     }
 }
@@ -130,7 +130,7 @@ h1{
         max-width: 70px !important;
         text-align: center;
     }
-    .side-name{
+    .side-name,#welcome{
         display: none;
     }
 }

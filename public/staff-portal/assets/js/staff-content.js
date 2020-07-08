@@ -5,7 +5,7 @@ async function staffData(){
     const staffBody = document.querySelector('#staff_body')
     staffBody.innerHTML = ''
 
-    fetchData.json().then( getData => {
+    fetchData.json().then( async getData => {
         for(const [idx,data] of getData.entries()){
             staffBody.innerHTML +=
             `<tr id='staffRow${idx}'>
@@ -13,13 +13,20 @@ async function staffData(){
                 <td><a class='staffEdit' data-toggle="modal" data-target="#staffModal" id="${idx}" href=''>${data.first_name} ${data.last_name}</a></td>
             </tr>`
 
+
+            const getTimesheet = await fetch(`/staff-portal/api/table/timesheet/staff_id/${data.id}`).then(res => res.json()).then(data => {return data})
+            
             for (const day of dayOfWeek){
                 document.querySelector(`#staffRow${idx}`).innerHTML += 
                 `<td>
-                    <div class='btn' id='staff${day}${idx}' style='width:100%' onClick='test(event)'>
+                    <div class='btn' id='staff-${data.id}-${day}' style='width:100%' onClick='timesheet(event)'>
                     &nbsp;
                     </div>
                 </td>`
+
+                for(const {workdays} of getTimesheet){
+                    if (workdays == day) document.querySelector(`#staff-${data.id}-${day}`).setAttribute('style','width:100%; background-color:green')
+                }
             }
         }
 
@@ -93,7 +100,15 @@ function assignStaffModal(data){
 
 
 
-function test(event){
-    if (event.target.getAttribute('style') == 'width:100%') event.target.setAttribute('style','width:100%; background-color:green')
-    else event.target.setAttribute('style','width:100%')
+function timesheet(event){
+    const splitId = event.target.id.split('-')
+
+    if (event.target.getAttribute('style') == 'width:100%'){
+        event.target.setAttribute('style','width:100%; background-color:green')
+        fetch(`/staff-portal/api/timesheet/${splitId[1]}/${splitId[2]}`,{method:'POST'})
+    } 
+    else{
+        event.target.setAttribute('style','width:100%')
+        fetch(`/staff-portal/api/timesheet/${splitId[1]}/${splitId[2]}`,{method:'DELETE'})
+    }
 }

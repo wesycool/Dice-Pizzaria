@@ -13,7 +13,6 @@ const models = {
 
     insertByParams: (table,params) => {return orm.insertByParams(table, Object.values(params))},
 
-    
     deleteByParams: (table,params) => {
         const keys = Object.keys(params)
         const values = Object.values(params)

@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS dice_pizzaria;;
 CREATE database dice_pizzaria;;
 
-USE dice_pizzaria;;
+USE dice_pizzaria;
 
 CREATE TABLE client (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

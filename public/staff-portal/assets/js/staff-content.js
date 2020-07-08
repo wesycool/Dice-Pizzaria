@@ -43,9 +43,6 @@ async function staffData(){
         document.querySelectorAll('.staffEdit').forEach( (edit) => 
             edit.addEventListener('click', () => editStaffModal(getData[event.target.id]))
         )
-        document.querySelectorAll('.staffAssign').forEach( (assign) => 
-            assign.addEventListener('click', () => assignStaffModal(getData[event.target.id]))
-        )
     })
 }
 
@@ -56,7 +53,7 @@ document.querySelector('#addStaff').addEventListener('click', () => editStaffMod
 // Staff Information Modal
 async function editStaffModal(data){
     const newStaff = {id:'',first_name:'', last_name:'', address:'', city:'', province:'ON', postal_code:'', role_id:''}
-    const {id, first_name, last_name, address, city, province, postal_code, role_id} = data || newStaff
+    const {id,email, first_name, last_name, address, city, province, postal_code} = data || newStaff
 
 
     document.querySelector('#staffHeader').textContent = data ? `${first_name} ${last_name}` : 'New Staff'
@@ -64,24 +61,24 @@ async function editStaffModal(data){
     `<form class="form-row g-3">
     <div style='display:none' id='staffIdHidden'>${id}</div>
         <div class="form-group col-md-6">
-            <label for="inputFirstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="inputFirstName" value='${first_name}'>
+            <label for="input-first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control staff" id="input-first_name" value='${first_name}'>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputLastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="inputLastName" value='${last_name}'>
+            <label for="input-last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control staff" id="input-last_name" value='${last_name}'>
         </div>
         <div class="form-group col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value='${address}'>
+            <label for="input-address" class="form-label">Address</label>
+            <input type="text" class="form-control staff" id="input-address" placeholder="1234 Main St" value='${address}'>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity" value='${city}'>
+            <label for="input-city" class="form-label">City</label>
+            <input type="text" class="form-control staff" id="input-city" value='${city}'>
         </div>
         <div class="form-group col-md-3">
-            <label for="inputState" class="form-label">Province</label>
-            <select id="inputState" class="form-control">
+            <label for="input-province" class="form-label">Province</label>
+            <select id="input-province" class="form-control staff">
                 <option ${(province == 'AB')? 'selected' : ''}>AB</option>
                 <option ${(province == 'BC')? 'selected' : ''}>BC</option>
                 <option ${(province == 'MB')? 'selected' : ''}>MB</option>
@@ -98,19 +95,33 @@ async function editStaffModal(data){
             </select>
         </div>
         <div class="form-group col-md-3">
-            <label for="inputZip" class="form-label">Postal Code</label>
-            <input type="text" class="form-control" id="inputZip" value='${postal_code}'>
+            <label for="input-postal_code" class="form-label">Postal Code</label>
+            <input type="text" class="form-control staff" id="input-postal_code" value='${postal_code}'>
         </div>
     </form>`
+
+
+    // Save Change on Staff Profile
+    document.querySelector('#staffEdit').addEventListener('click', () => {
+        if(!document.querySelector('#staffIdHidden').value) {
+            const firstname = document.querySelector('#input-first_name').value
+            const lastname = document.querySelector('#input-last_name').value
+            const address = document.querySelector('#input-address').value
+            const city = document.querySelector('#input-city').value
+            const province = document.querySelector('#input-province').value
+            const postalcode = document.querySelector('#input-postal_code').value.replace(/\s/g,'')
+
+            fetch(`/staff-portal/api/setting/${firstname}@asdsa.com/password/${firstname}/${lastname}/${address}/${city}/${province}/${postalcode}/1231231234/3/1/default/metric`,{method:'POST'})
+        }else{
+            document.querySelectorAll('.staff').forEach( event => {
+                const splitId = event.id.split('-')
+                if (data[splitId[1]] != event.value) {
+                    fetch(`/staff-portal/api/setting/${splitId[1]}/${event.value}/${email}`,{method:'PUT'})}
+            })
+        }
+    })
+
 }
-
-
-function assignStaffModal(data){
-    const {id, first_name, last_name, role, department} = data || {first_name:'', last_name:''}
-    document.querySelector('#staffHeader').textContent = data ? `${first_name} ${last_name} - ${role}` : 'New Staff'
-    document.querySelector('#staffBody').innerHTML = ""
-}
-
 
 
 function timesheet(event){

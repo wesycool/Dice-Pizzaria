@@ -1,0 +1,71 @@
+h2 {
+    text-align:center;
+}
+
+.col{
+    margin-bottom: 25px;
+}
+
+.mycol {
+    margin-bottom: 15px;
+}
+
+img {
+    position: relative;
+    /* width: 200px;
+    height: auto;  */
+}
+
+button#checkoutBtn {
+    z-index:10;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 1em;
+}
+
+.bgimg {
+    background-image: url("../../staff-portal/dashboard/assets/img/dashbg.jpg");
+    background-size: cover;
+}
+
+.mobile {
+    display: none;
+}
+
+.display-4{
+    position:absolute;
+    top:28%; 
+    font-size:5vw
+}
+
+.lead{
+    position:absolute;
+    top:45%;
+    left:25%;
+    font-size:2.5vw
+}
+
+
+
+@media screen and (orientation: portrait) and (max-width: 768px){
+    .mobile {
+        display: inherit;
+    }
+    .regular{
+        display: none;
+    }
+
+    .display-4{
+        position: absolute;
+        left:15%;
+        top:15%;
+        font-size:6vw
+    }
+    
+    .lead{
+        position:absolute;
+        top:32%;
+        left:25%;
+    }
+}

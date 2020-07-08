@@ -48,10 +48,17 @@ router.get('/staff-portal/api/join/alltrans', async (req,res) => {
   res.send(list)
 })
 
+
+// Post Setting Params
+router.post('/staff-portal/api/setting/:email/:password/:first_name/:last_name/:address/:city/:province/:postal_code/:phone/:role_id/:manager_id/:theme/:units', (req,res) => {
+  models.insertByParams('staff',req.params)
+})
+
 // Update Setting Params
 router.put('/staff-portal/api/setting/:col/:set_params/:where_params', (req,res) => {
   models.updateByParams('staff',req.params.col,req.params.set_params,'email',req.params.where_params)
 })
+
 
 // Post Staff TimeSheet
 router.post('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
@@ -63,6 +70,7 @@ router.delete('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
   models.deleteByParams('timesheet',req.params)
 })
 
+
 // Post Product Items
 router.post('/staff-portal/api/products/:description/:size/:set_price/:archive', (req,res) => {
   models.insertByParams('products',req.params)
@@ -73,6 +81,7 @@ router.put('/staff-portal/api/products/:col/:set_params/:where_params', (req,res
   models.updateByParams('products',req.params.col,req.params.set_params,'id',req.params.where_params)
 })
 
+
 // Get weather data - To fetch weather api data while hidding API key
 router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   const {api, units, lat, lon} = req.params
@@ -81,25 +90,38 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   res.send(getWeather)
 })
 
-// pat-test HAHAHA
-router.get('/myapi/:table', async (req, res) => {
-	const {table} = req.params
-	const list = await models.selectAll(table)
+// // pat-test HAHAHA
+// router.get('/myapi/:table', async (req, res) => {
+// 	const {table} = req.params
+// 	const list = await models.selectAll(table)
 
-	// console.log(list)
+// 	// console.log(list)
 
-	res.send(list)
-})
+// 	res.send(list)
+// })
 
-// Post Test
-router.post('/posttest', function (req, res) {
-  data = req.body
-  console.log(data) // your JSON
-  
-  models.addNow("client", data)
 
-	res.send('Received') // echo the result back
-})
+// //Pats test
+// router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
+//   const {id, status} = req.params
+//   const test = "Transaction status updated !"
+//   await models.updateStatus(id, status)
+//   res.send(test)
+// })
+
+
+// // Post Test
+// router.post('/staff-portal/api/:table', function (req, res) {
+//   models.addNow(req.params.table, req.body)
+// 	res.send('Received') // echo the result back
+// })
+
+// fetch('/staff-portal/api/:table',{
+//   method:'POST',
+//   header: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+//   body: JSON.stringify(body)
+// })
+
 
 // Export routes for server.js to use.
 module.exports = router

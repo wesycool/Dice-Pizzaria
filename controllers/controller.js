@@ -35,7 +35,7 @@ router.get('/staff-portal/api/table/:tab', async (req,res) => {
   res.send(getData)
 })
 
-// Get Data by Id
+// Get Data by Params
 router.get('/staff-portal/api/table/:tab/:field/:params', async (req,res) => {
   const {tab,field,params} = req.params
   const getData = await models.getByParams(tab,field,params)
@@ -49,7 +49,7 @@ router.get('/staff-portal/api/join/alltrans', async (req,res) => {
 })
 
 // Update Setting Params
-router.put('/staff-portal/api/:col/:set_params/:where_params', (req,res) => {
+router.put('/staff-portal/api/setting/:col/:set_params/:where_params', (req,res) => {
   models.updateByParams('staff',req.params.col,req.params.set_params,'email',req.params.where_params)
 })
 
@@ -61,6 +61,16 @@ router.post('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
 //Delete Staff TimeSheet
 router.delete('/staff-portal/api/timesheet/:staff_id/:workdays', (req,res) =>{
   models.deleteByParams('timesheet',req.params)
+})
+
+// Post Product Items
+router.post('/staff-portal/api/products/:description/:size/:set_price/:archive', (req,res) => {
+  models.insertByParams('products',req.params)
+})
+
+// Update Product Items
+router.put('/staff-portal/api/products/:col/:set_params/:where_params', (req,res) => {
+  models.updateByParams('products',req.params.col,req.params.set_params,'id',req.params.where_params)
 })
 
 // Get weather data - To fetch weather api data while hidding API key

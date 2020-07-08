@@ -31,15 +31,15 @@ INSERT INTO order_info VALUES(0, 5, 1, "Additional information", 1, 5.99, defaul
 INSERT INTO order_info VALUES(0, 5, 4, "Additional information", 2, 7.99, default); 
 
 -- products ( id, description, size, price, createdAt )
--- INSERT INTO products VALUES(0, "description", "size", price, default);
-INSERT INTO products VALUES(0, "Pepperoni Pizza", "Small", 5.99, default);
-INSERT INTO products VALUES(0, "Pepperoni Pizza", "Medium", 7.99, default);
-INSERT INTO products VALUES(0, "Pepperoni Pizza", "Large", 10.99, default);
-INSERT INTO products VALUES(0, "All Dressed Pizza", "Small", 6.99, default);
-INSERT INTO products VALUES(0, "All Dressed Pizza", "Medium", 8.99, default);
-INSERT INTO products VALUES(0, "All Dressed Pizza", "Large", 11.99, default);
-INSERT INTO products VALUES(0, "Veggie Pizza", "Medium", 9.99, default);
-INSERT INTO products VALUES(0, "Custom Pizza", "Special", 12.99, default);
+-- INSERT INTO products VALUES(0, "description", "size", price, archive, default);
+INSERT INTO products VALUES(0, "Pepperoni Pizza", "Small", 5.99, false, default);
+INSERT INTO products VALUES(0, "Pepperoni Pizza", "Medium", 7.99, false, default);
+INSERT INTO products VALUES(0, "Pepperoni Pizza", "Large", 10.99, false, default);
+INSERT INTO products VALUES(0, "All Dressed Pizza", "Small", 6.99, false, default);
+INSERT INTO products VALUES(0, "All Dressed Pizza", "Medium", 8.99, false, default);
+INSERT INTO products VALUES(0, "All Dressed Pizza", "Large", 11.99, false, default);
+INSERT INTO products VALUES(0, "Veggie Pizza", "Medium", 9.99, false, default);
+INSERT INTO products VALUES(0, "Custom Pizza", "Special", 12.99, false, default);
 
 -- role ( id, title, salary, department_id, createdAt )
 -- INSERT INTO role VALUES(0, "title", salary, department_id, default);

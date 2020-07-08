@@ -76,7 +76,7 @@ function sidebarItemColor(eventID){
 
 //Setting Theme Change onClick
 document.querySelector('#radioTheme').addEventListener('click', function(event){
-    fetch(`/staff-portal/api/theme/${event.target.id}/${username}`,{method:'PUT'})
+    fetch(`/staff-portal/api/setting/theme/${event.target.id}/${username}`,{method:'PUT'})
     themeChange(event.target.id,selectData.units, true)
 })
 
@@ -121,7 +121,7 @@ function changeUnit(){
     getLocation(event.target.id)
     setInterval(() => {getLocation(event.target.id)}, 1000*60*10);
 
-    fetch(`/staff-portal/api/units/${event.target.id}/${username}`,{method:'PUT'})   
+    fetch(`/staff-portal/api/setting/units/${event.target.id}/${username}`,{method:'PUT'})   
 }
 
 
@@ -151,7 +151,7 @@ document.querySelector('#saveProfile').addEventListener('click',async function()
     if (setPassword.value != ''){
         confirmPassword.setAttribute('class',`form-control ${(condition)? '':'is-invalid'}`)
         if (condition) {
-            fetch(`/staff-portal/api/password/${setPassword.value}/${username}`,{method:'PUT'})
+            fetch(`/staff-portal/api/setting/password/${setPassword.value}/${username}`,{method:'PUT'})
             confirmPassword.value = ''
             setPassword.value = ''       
         }
@@ -167,7 +167,7 @@ document.querySelector('#saveProfile').addEventListener('click',async function()
     }
 
     for(const getData in data){
-        if (selectData[getData] != data[getData]) fetch(`/staff-portal/api/${getData}/${data[getData]}/${username}`,{method:'PUT'})
+        if (selectData[getData] != data[getData]) fetch(`/staff-portal/api/setting/${getData}/${data[getData]}/${username}`,{method:'PUT'})
     }
 })
 

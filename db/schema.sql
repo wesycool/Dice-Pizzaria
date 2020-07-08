@@ -54,6 +54,7 @@ CREATE TABLE products (
 	description VARCHAR(255),
 	size VARCHAR(10),
 	set_price DECIMAL(10,2),
+	archive BOOLEAN,
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

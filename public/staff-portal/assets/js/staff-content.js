@@ -2,15 +2,25 @@
 async function staffData(){
     const dayOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
     const fetchData = await fetch('/staff-portal/api/table/staff')
+    const fetchRole = await fetch('/staff-portal/api/table/role').then(res => res.json()).then(data => {return data})
     const staffBody = document.querySelector('#staff_body')
     staffBody.innerHTML = ''
 
+
+
     fetchData.json().then( async getData => {
         for(const [idx,data] of getData.entries()){
+            
+            let role
+            for(const roleData of fetchRole){
+                if (roleData.id == data.role_id) role= roleData.title
+            }
+
+
             staffBody.innerHTML +=
             `<tr id='staffRow${idx}'>
                 <th scope="row">${data.id}</th>
-                <td><a class='staffEdit' data-toggle="modal" data-target="#staffModal" id="${idx}" href=''>${data.first_name} ${data.last_name}</a></td>
+                <td><a class='staffEdit' data-toggle="modal" data-target="#staffModal" id="${idx}" href=''>${data.first_name} ${data.last_name} - ${role}</a></td>
             </tr>`
 
 
@@ -44,12 +54,15 @@ document.querySelector('#addStaff').addEventListener('click', () => editStaffMod
 
 
 // Staff Information Modal
-function editStaffModal(data){
-    const newStaff = {first_name:'', last_name:'', address:'', city:'', province:'ON', postal_code:'', role_id:''}
+async function editStaffModal(data){
+    const newStaff = {id:'',first_name:'', last_name:'', address:'', city:'', province:'ON', postal_code:'', role_id:''}
     const {id, first_name, last_name, address, city, province, postal_code, role_id} = data || newStaff
-    document.querySelector('#staffHeader').textContent = data ? `${first_name} ${last_name} - ${role_id}` : 'New Staff'
+
+
+    document.querySelector('#staffHeader').textContent = data ? `${first_name} ${last_name}` : 'New Staff'
     document.querySelector('#staffBody').innerHTML =
     `<form class="form-row g-3">
+    <div style='display:none' id='staffIdHidden'>${id}</div>
         <div class="form-group col-md-6">
             <label for="inputFirstName" class="form-label">First Name</label>
             <input type="text" class="form-control" id="inputFirstName" value='${first_name}'>

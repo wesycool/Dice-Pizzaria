@@ -12,7 +12,7 @@ CREATE TABLE client (
 	address VARCHAR(255),
     address_2 VARCHAR(255),
     country VARCHAR(255),
-    province VARCHAR(2),
+    province VARCHAR(20),
 	city VARCHAR(255),
 	postal_code VARCHAR(6),
 	phone VARCHAR(20),

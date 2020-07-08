@@ -1,15 +1,15 @@
 require('dotenv').config()
-const express = require("express");
+
+const express = require('express')
 const staffIndexJSON = require('../db/staff-index.json')
 const fetch = require('node-fetch')
-const models = require("../models/models");
+const models = require('../models/models')
 
-const router = express.Router();
+const router = express.Router()
 
 
 // Create all our routes and set up logic within those routes where required.
 
-// Get Client Main Page
 router.get("/", (req, res) => {
     res.render("index");
 });
@@ -81,25 +81,25 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   res.send(getWeather)
 })
 
+// pat-test HAHAHA
+router.get('/myapi/:table', async (req, res) => {
+	const {table} = req.params
+	const list = await models.selectAll(table)
 
+	// console.log(list)
 
-
-//Pats test
-router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
-  const {id, status} = req.params
-  const test = "Transaction status updated !"
-  await models.updateStatus(id, status)
-  res.send(test)
+	res.send(list)
 })
 
 // Post Test
-router.post('/posttest', function(req, res){
-  console.log(req.body);      // your JSON
-  res.send("Received");    // echo the result back
-});
+router.post('/posttest', function (req, res) {
+  data = req.body
+  console.log(data) // your JSON
+  
+  models.addNow("client", data)
 
+	res.send('Received') // echo the result back
+})
 
 // Export routes for server.js to use.
-module.exports = router;
-
-
+module.exports = router

@@ -3,24 +3,24 @@ async function getTransaction() {
     const transactions = await fetch("/staff-portal/api/table/transactions").then(response => response.json())
     const listProd = await fetch(`/staff-portal/api/join/alltrans`).then(response => response.json())
     // .then(data => {console.log(data)})
-
-    document.querySelector("#transactions").innerHTML = ``
+    const transactionBody = document.querySelector("#transactions")
+    transactionBody.innerHTML = ``
     
-    for ( transaction of transactions ) { 
-        document.querySelector("#transactions").innerHTML +=            
+    for ( const {id,status} of transactions ) { 
+        transactionBody.innerHTML +=            
         `
-        <button id="trns${transaction.id}" data-transaction="${transaction.id}" data-status="${transaction.status}" type="button" class="btn btn-block" onclick="changeStatus(event)">
+        <button id="trns${id}" data-transaction="${id}" data-status="${status}" type="button" class="btn btn-block" onclick="changeStatus(event)">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p style="font-weight:bolder;">${transaction.status}</p>
+                    <p style="font-weight:bolder;">${status}</p>
                 </div>
                 <div class="col text-left">
                     <p>
-                        Transaction #${transaction.id}
+                        Transaction #${id}
                     </p>
                 </div>
                 <div class="col text-right">
-                    <p id="productList${transaction.id}">
+                    <p id="productList${id}">
 
                     </p>
                 </div>
@@ -28,17 +28,17 @@ async function getTransaction() {
         </button>
         `
         // filter to display only the products for this transaction
-        const productList = listProd.filter(productList => productList.transaction_id == transaction.id)
+        const productList = listProd.filter(productList => productList.transaction_id == id)
 
         for (product of productList) {
-            document.querySelector(`#productList${transaction.id}`).innerHTML += 
+            document.querySelector(`#productList${id}`).innerHTML += 
             `${product.quantity} x ${product.description}<br>`
         }
 
         // append color based on status
-        const myStatus = document.querySelector(`#trns${transaction.id}`)
+        const myStatus = document.querySelector(`#trns${id}`)
 
-        switch (transaction.status) {
+        switch (status) {
             case "Received Order":
                 myStatus.classList.add("btn-danger")
             break;
@@ -98,7 +98,7 @@ async function changeStatus(event) {
 getTransaction()
 
 // refreshing
-// setInterval(function() { 
-//     getTransaction()
-//     // console.log(`refreshing...`)
-//  }, 2500)
+setInterval(function() { 
+    getTransaction()
+    // console.log(`refreshing...`)
+ }, 5000)

@@ -1,4 +1,4 @@
-USE dice_pizzaria;;
+USE dice_pizzaria;
 
 -- client ( id, email, password, firt_name, last_name, address, address_2, city, province, postal_code, phone, createdAt )
 -- INSERT INTO client VALUES(0, email, password, first_name, last_name, address, city, province, postal_code, phone, default);

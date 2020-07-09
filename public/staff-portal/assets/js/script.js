@@ -39,6 +39,7 @@ async function startup(){
             }
         })
 
+        await calendarCardData()
         getLocation(units)
         setInterval(() => {getLocation(units)},1000*60*5)
         themeChange(theme, units, false)
@@ -55,6 +56,7 @@ sidebar.addEventListener('click', async function(){
         })
         
         switch (event.target.id){
+            case 'home': await calendarCardData(); break;
             case 'calendar': await calendarData(); break;
             case 'staff': await staffData(); break;
             case 'customer': await customerData(); break;

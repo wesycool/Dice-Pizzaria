@@ -1,25 +1,78 @@
 <div class='row' style='overflow: scroll; height:70vh'>
-    <div class='col'>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">WeekDay</th>
-                    <th scope="col">Start time</th>
-                    <th scope="col">End Time</th>
-                    <th scope="col">Total Time</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id='calendar_body'>
-            </tbody>
+    <div class='col'  style='margin-bottom:20px'>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-sm">
+                    <h3>Daily Planner</h3>
+                    <thead>
+                        <tr>
+                            <th scope="col">Time</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8:00 AM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>9:00 AM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>10:00 AM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>11:00 AM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>12:00 AM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>1:00 PM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>2:00 PM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>3:00 PM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>4:00 PM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>5:00 PM</td>
+                            <td><textarea style="width:100%"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <tfoot>
-                <tr style="font-weight: bold">
-                    <td colspan='4'>Total</td>
-                    <td colspan='2' id='totalHours'></td>
-                </tr>
-            </tfoot>
-        </table>
+        </div>
+    </div>
+    <div class='col col-md-4'>
+        <div class="card">
+            <div class="card-body">
+                <h3>Work Schedule</h3>
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">WeekDay</th>
+                            <th scope="col">Start</th>
+                            <th scope="col">End</th>
+                        </tr>
+                    </thead>
+                    <tbody id='calendar_card'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

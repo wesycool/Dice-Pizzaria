@@ -28,5 +28,5 @@
   "directories": {
     "doc": "docs"
   },
-  "description": ""
+  "description": "![Version](https://badge.fury.io/gh/tterb%2FHyde.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat) # Dice Pizzeria A Team Creepers project using node express, express-handlebars, and mySQL."
 }

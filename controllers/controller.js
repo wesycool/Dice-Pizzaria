@@ -125,7 +125,7 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
 
 
 
-//Pats test
+//Pats Dashboard
 router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
   const {id, status} = req.params
   const test = "Transaction status updated !"

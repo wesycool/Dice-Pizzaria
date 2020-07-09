@@ -47,9 +47,9 @@ async function startup(){
 
 //Sidebar Page onClick
 sidebar.addEventListener('click', async function(){
-    sidebarItemColor(event.target.id)
+    if (event.target.id != 'welcome') sidebarItemColor(event.target.id)
 
-    if (event.target.id != 'logout'){
+    if (!['welcome','logout'].includes(event.target.id)){
         document.querySelectorAll(`.display-row`).forEach(value => {
             value.style.display = (value.id == `${event.target.id}-row`) ? 'inline' : 'none'
         })

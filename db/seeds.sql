@@ -14,21 +14,21 @@ INSERT INTO department VALUES(0, "Main Location 1", default);
 
 -- order_info ( id, status, transaction_id, product_id, ingredient, quantity, price, createdAt )
 -- INSERT INTO order_info VALUES(0, "status", transaction_id, product_id, "addinfo", quantity, price, default);
-INSERT INTO order_info VALUES(0, 1, 1, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 1, 2, "Additional information", 2, 7.99, default);
-INSERT INTO order_info VALUES(0, 2, 1, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 2, 2, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, "fil@asdsa.com", 1, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "fil@asdsa.com", 1, 2, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, "daniel@asdsa.com", 2, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "daniel@asdsa.com", 2, 2, "Additional information", 2, 7.99, default);
 
-INSERT INTO order_info VALUES(0, 3, 1, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 3, 2, "Additional information", 2, 7.99, default);
-INSERT INTO order_info VALUES(0, 3, 3, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 3, 4, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, "holly@asdsa.com", 3, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "holly@asdsa.com", 3, 2, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, "holly@asdsa.com", 3, 3, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "holly@asdsa.com", 3, 4, "Additional information", 2, 7.99, default);
 
-INSERT INTO order_info VALUES(0, 4, 5, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 4, 6, "Additional information", 2, 7.99, default);
+INSERT INTO order_info VALUES(0, "jolly@asdsa.com", 4, 5, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "jolly@asdsa.com", 4, 6, "Additional information", 2, 7.99, default);
 
-INSERT INTO order_info VALUES(0, 5, 1, "Additional information", 1, 5.99, default);
-INSERT INTO order_info VALUES(0, 5, 4, "Additional information", 2, 7.99, default); 
+INSERT INTO order_info VALUES(0, "roger@asdsa.com", 5, 1, "Additional information", 1, 5.99, default);
+INSERT INTO order_info VALUES(0, "roger@asdsa.com", 5, 4, "Additional information", 2, 7.99, default); 
 
 -- products ( id, description, size, price, createdAt )
 -- INSERT INTO products VALUES(0, "description", "size", price, archive, default);

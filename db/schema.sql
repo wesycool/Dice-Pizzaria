@@ -36,6 +36,7 @@ CREATE Table transactions (
 
 CREATE TABLE order_info (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(100),
 	transaction_id int,
 	product_id int,
 	addinfo VARCHAR(255),

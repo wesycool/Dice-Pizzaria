@@ -7,6 +7,9 @@ const models = {
 
     updateByParams: (table,set_field,set_params,where_field,where_params) => {
         return orm.updateByParams(table, {[set_field]:set_params}, {[where_field]:where_params} )},
+        
+    updateBy2Params: (table,set_field,set_params,where_field1,where_params1,where_field2,where_params2) => {
+        return orm.updateBy2Params(table, {[set_field]:set_params}, {[where_field1]:where_params1},{[where_field2]:where_params2} )},
 
     updateStatus: (id, status) => {return orm.updateOne("status", status, id) },
 

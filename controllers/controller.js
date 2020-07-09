@@ -95,10 +95,24 @@ router.put('/staff-portal/api/client/:col/:set_params/:where_params', (req,res) 
 
 // Post Transaction
 router.post('/staff-portal/api/transaction/:client_id/:email/:first_name/:last_name/:status/:isDelivery/:isPaid/:gross_total/:tax_amount/:net_total', (req,res) => {
-
   models.insertByParams('transactions',req.params)
 })
 
+// Update Transaction
+router.put('/staff-portal/api/transaction/:col/:set_params/:where_params', (req,res) => {
+  models.updateByParams('transactions',req.params.col,req.params.set_params,'email',req.params.where_params)
+})
+
+
+// Post Order
+router.post('/staff-portal/api/order_info/:email/:transaction_id/:product_id/:addinfo/:quantity/:order_price', (req,res) => {
+  models.insertByParams('order_info',req.params)
+})
+
+// Update Order
+router.put('/staff-portal/api/order_info/:col/:set_params/:where_params1/', (req,res) => {
+  models.updateByParams('order_info',req.params.col,req.params.set_params,'email',req.params.where_params1)
+})
 
 
 // Get weather data - To fetch weather api data while hidding API key

@@ -85,8 +85,8 @@ document.querySelectorAll('#selectionBtn').forEach( button => {
                         if(qty != 0) {
                             cartItems.innerHTML += 
                                 `<tr>
-                                    <td>${description} - ${size}</td>
-                                    <td style='text-align:center'>${qty}</td>
+                                    <td>${description}- ${size}</td>
+                                    <td style='text-align:center' id='getQty${id}'>${qty}</td>
                                     <td style='text-align:right'>$${sumPrice.toFixed(2)}</td>
                                 </tr>`
     
@@ -148,14 +148,13 @@ document.querySelector('#statusBtn').addEventListener('click', async () => {
     if (!document.querySelector('#hiddenClientId').value) {
         const clientInfo = await fetch(`/staff-portal/api/table/client/email/${email}`).then(res => res.json()).then(data => {return data} )
             const getID = (clientInfo.length != 0)? clientInfo[0].id : 0
-            const status = 'Receive Order'
+            const status = 'Received Order'
             const subtotal = document.querySelector('#subtotalField').textContent.replace(/[^0-9.-]+/g,"")
             const tax = document.querySelector('#taxField').textContent.replace(/[^0-9.-]+/g,"")
             const total = document.querySelector('#totalField').textContent.replace(/[^0-9.-]+/g,"")
 
 
             if(clientInfo.length != 0){
-                console.log('data 0')
                 document.querySelector('#hiddenClientId').textContent = getID
 
                 //Update Client Profile
@@ -172,11 +171,23 @@ document.querySelector('#statusBtn').addEventListener('click', async () => {
             }else{
                 //Create new Client Profile
                 if (document.querySelector('#saveProfile').checked){
-                    fetch(`/staff-portal/api/client/${email}/password/${firstname}/${lastName}/${address}/${address2}/${country}/${province}/${city}/${postal}/${phone}`,{method:'POST'})
+                    await fetch(`/staff-portal/api/client/${email}/password/${firstname}/${lastName}/${address}/${address2}/${country}/${province}/${city}/${postal}/${phone}`,{method:'POST'})
                 }
             }
             //Save Transactions
             fetch(`/staff-portal/api/transaction/${getID}/${email}/${firstname}/${lastName}/${status}/1/1/${subtotal}/${tax}/${total}`,{method:'POST'})
+
+            //Save Order
+            const products = await fetch('/staff-portal/api/table/products').then(response => response.json()).then(data => {return data})
+            for (const {id,set_price} of products) {
+                const getQty = document.querySelector(`#getQty${id}`)
+                if (getQty){
+                    const addinfo = 'Additional Information'
+                    fetch(`/staff-portal/api/order_info/${email}/0/${id}/${addinfo}/${getQty.textContent}/${set_price}`,{method:'POST'})
+                    
+                }
+            }
+            
     }
 
 })

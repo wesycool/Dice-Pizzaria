@@ -8,6 +8,7 @@ const orm = {
 
     // UPDATE FUNCTIONS
     updateByParams: (tableInput, set, where) => { return db.query( 'UPDATE ?? SET ? WHERE ?',[tableInput, set, where]) },
+    updateBy2Params: (tableInput, set, where1, where2) => { return db.query( 'UPDATE ?? SET ? WHERE ? AND ?',[tableInput, set, where1, where2]) },
     updateOne: (field, value, id ) => { return db.query( 'UPDATE transactions SET ? WHERE id=?', [ {[field]: value}, id ] )}, // update an entry based on ID
 
     // INSERT FUNCTIONS

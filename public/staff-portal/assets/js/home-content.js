@@ -13,7 +13,4 @@ async function calendarCardData(){
             <td>5:00 PM</td>
         </tr>`
     }
-
-    document.querySelector('#totalHours').textContent = fetchTimesheet.length * 8
-
 }

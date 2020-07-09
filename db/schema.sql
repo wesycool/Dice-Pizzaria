@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS dice_pizzaria;;
-CREATE database dice_pizzaria;;
+DROP DATABASE IF EXISTS dice_pizzaria;
+CREATE database dice_pizzaria;
 
 USE dice_pizzaria;
 

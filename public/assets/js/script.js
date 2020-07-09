@@ -21,13 +21,13 @@ document.querySelectorAll('#selectionBtn').forEach( button => {
         document.querySelector("#productBody").innerHTML = ''
         
         // Loop of Each Product Display into Cards
-        for (const {id, description, set_price} of products) {
+        for (const {id, description, size, set_price} of products) {
             document.querySelector("#productBody").innerHTML += 
             `<div class="col-12 col-sm-6 col-md-4 mycol">
                 <div data-id="${id}" class="card text-center" >
-                    <img src="img/pizza.png" class="card-img-top" alt="${description}" />
+                    <img src="/assets/img/pizza.png" class="card-img-top" alt="${description}" />
                     <div class="card-body">
-                        <h5 id="desc${id}" class="card-title">${description}</h5>
+                        <h5 id="desc${id}" class="card-title">${description} - ${size}</h5>
                         <p id="price${id}" class="card-text">$${set_price}</p>
                         <div id="qtyBtn${id}"  class="container" style="max-width:165px;"></div>
                     </div>
@@ -70,16 +70,85 @@ document.querySelectorAll('#selectionBtn').forEach( button => {
             })
 
         }
+
+        // Checkout Button onClick Function
+        document.querySelectorAll(`#checkoutBtn`).forEach(getBtn => {
+            getBtn.addEventListener('click', () => {
+                const cartItems = document.querySelector('#cartItems')
+                cartItems.innerHTML = ''
+                let countTotal = 0
+
+                // Display Cart List
+                for (const {id, description, size, set_price} of products) {
+                    const qty = document.querySelector(`#qty${id}`).value
+                    const sumPrice = qty * set_price
+                    if(qty != 0) {
+                        cartItems.innerHTML += 
+                            `<tr>
+                                <td>${description} - ${size}</td>
+                                <td style='text-align:center'>${qty}</td>
+                                <td style='text-align:right'>$${sumPrice.toFixed(2)}</td>
+                            </tr>`
+
+                        countTotal += sumPrice
+                    }
+                }
+
+                // Display Subtotal, Tax and Total
+                document.querySelector('#cartTotal').innerHTML =
+                    `<tr>
+                        <td colspan='2' >Subtotal</td>
+                        <td id='subtotalField'>$${countTotal.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>Tax</td>
+                        <td id='taxField' >$${(countTotal*.13).toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>Total</td>
+                        <td id='totalField'>$${(countTotal*1.13).toFixed(2)}</td>
+                    </tr>`
+
+            })
+        })
+
+
     })
 })
 
 
-// 
-document.querySelectorAll(`#checkoutBtn`).forEach(getBtn => {
-    getBtn.addEventListener('click', () => {
-        startCheckout(result)
+// Status Button OnClick Function if Save Profile checked
+document.querySelector('#statusBtn').addEventListener('click', () => {
+    if (document.querySelector('#saveProfile').checked){
+        const firstname = document.querySelector('#firstName').value || null
+        const lastName = document.querySelector('#lastName').value || null
+        const email = document.querySelector('#email').value || null
+        const address = document.querySelector('#address').value || null
+        const address2 = document.querySelector('#address2').value || null
+        const country = document.querySelector('#country').value || null
+        const province = document.querySelector('#province').value || null
+        const city = document.querySelector('#city').value || null
+        const postal = document.querySelector('#postal').value.replace(/\s/g,'') || null
+        const phone = document.querySelector('#phone').value || null
+        fetch(`/staff-portal/api/client/${email}/password/${firstname}/${lastName}/${address}/${address2}/${country}/${province}/${city}/${postal}/${phone}`,{method:'POST'})
+    }
+})
+
+
+// Province Field onChange Function
+document.querySelector('#province').addEventListener('change', async (event) =>{
+
+    await fetch(`/staff-portal/api/table/tax/province/${event.target.value}`)
+    .then(res => res.json()).then(data => {
+        const subtotal = document.querySelector('#subtotalField').textContent.replace(/[^0-9.-]+/g,"")
+        document.querySelector('#taxField').textContent = `$${(Number(subtotal) * data[0].tax_rate / 100).toFixed(2)}`
+        document.querySelector('#totalField').textContent = `$${(Number(subtotal) * (data[0].tax_rate / 100 + 1)).toFixed(2)}`
+        
+        
     })
 })
+
+
 
 
 

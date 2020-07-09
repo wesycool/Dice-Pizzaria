@@ -82,6 +82,14 @@ router.put('/staff-portal/api/products/:col/:set_params/:where_params', (req,res
 })
 
 
+// Post Client Profile
+router.post('/staff-portal/api/client/:email/:password/:first_name/:last_name/:address/:address2/:country/:province/:city/:postal_code/:phone', (req,res) => {
+  console.log(req.params)
+  models.insertByParams('client',req.params)
+})
+
+
+
 // Get weather data - To fetch weather api data while hidding API key
 router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   const {api, units, lat, lon} = req.params

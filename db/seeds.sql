@@ -73,11 +73,11 @@ INSERT INTO staff VALUES(0, "damon@asdsa.com", "password", "Damon", "C", "369 So
 -- tax ( id, province, tax_rate, createdAt )
 INSERT INTO tax VALUES(0, "AB", 5, default);
 INSERT INTO tax VALUES(0, "BC", 12, default);
-INSERT INTO tax VALUES(0, "MN", 12, default);
-INSERT INTO tax VALUES(0, "BC", 15, default);
+INSERT INTO tax VALUES(0, "MB", 12, default);
+INSERT INTO tax VALUES(0, "NB", 15, default);
 INSERT INTO tax VALUES(0, "NL", 15, default);
-INSERT INTO tax VALUES(0, "NT", 5, default);
 INSERT INTO tax VALUES(0, "NS", 15, default);
+INSERT INTO tax VALUES(0, "NT", 5, default);
 INSERT INTO tax VALUES(0, "NU", 5, default);
 INSERT INTO tax VALUES(0, "ON", 13, default);
 INSERT INTO tax VALUES(0, "PE", 15, default);

@@ -74,40 +74,44 @@ document.querySelectorAll('#selectionBtn').forEach( button => {
         // Checkout Button onClick Function
         document.querySelectorAll(`#checkoutBtn`).forEach(getBtn => {
             getBtn.addEventListener('click', () => {
-                const cartItems = document.querySelector('#cartItems')
-                cartItems.innerHTML = ''
-                let countTotal = 0
-
-                // Display Cart List
-                for (const {id, description, size, set_price} of products) {
-                    const qty = document.querySelector(`#qty${id}`).value
-                    const sumPrice = qty * set_price
-                    if(qty != 0) {
-                        cartItems.innerHTML += 
-                            `<tr>
-                                <td>${description} - ${size}</td>
-                                <td style='text-align:center'>${qty}</td>
-                                <td style='text-align:right'>$${sumPrice.toFixed(2)}</td>
-                            </tr>`
-
-                        countTotal += sumPrice
+                document.querySelectorAll('#cartItems').forEach( cartItems =>{
+                    cartItems.innerHTML = ''
+                    let countTotal = 0
+    
+                    // Display Cart List
+                    for (const {id, description, size, set_price} of products) {
+                        const qty = document.querySelector(`#qty${id}`).value
+                        const sumPrice = qty * set_price
+                        if(qty != 0) {
+                            cartItems.innerHTML += 
+                                `<tr>
+                                    <td>${description} - ${size}</td>
+                                    <td style='text-align:center'>${qty}</td>
+                                    <td style='text-align:right'>$${sumPrice.toFixed(2)}</td>
+                                </tr>`
+    
+                            countTotal += sumPrice
+                        }
                     }
-                }
-
-                // Display Subtotal, Tax and Total
-                document.querySelector('#cartTotal').innerHTML =
-                    `<tr>
-                        <td colspan='2' >Subtotal</td>
-                        <td id='subtotalField'>$${countTotal.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>Tax</td>
-                        <td id='taxField' >$${(countTotal*.13).toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>Total</td>
-                        <td id='totalField'>$${(countTotal*1.13).toFixed(2)}</td>
-                    </tr>`
+    
+                    // Display Subtotal, Tax and Total
+                    document.querySelectorAll('#cartTotal').forEach( cartTotal =>{
+                        cartTotal.innerHTML =
+                        `<tr>
+                            <td colspan='2' >Subtotal</td>
+                            <td id='subtotalField'>$${countTotal.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan='2'>Tax</td>
+                            <td id='taxField' >$${(countTotal*.13).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan='2'>Total</td>
+                            <td id='totalField'>$${(countTotal*1.13).toFixed(2)}</td>
+                        </tr>`
+                    })
+                })
+                
 
             })
         })
@@ -118,20 +122,63 @@ document.querySelectorAll('#selectionBtn').forEach( button => {
 
 
 // Status Button OnClick Function if Save Profile checked
-document.querySelector('#statusBtn').addEventListener('click', () => {
-    if (document.querySelector('#saveProfile').checked){
-        const firstname = document.querySelector('#firstName').value || null
-        const lastName = document.querySelector('#lastName').value || null
-        const email = document.querySelector('#email').value || null
-        const address = document.querySelector('#address').value || null
-        const address2 = document.querySelector('#address2').value || null
-        const country = document.querySelector('#country').value || null
-        const province = document.querySelector('#province').value || null
-        const city = document.querySelector('#city').value || null
-        const postal = document.querySelector('#postal').value.replace(/\s/g,'') || null
-        const phone = document.querySelector('#phone').value || null
-        fetch(`/staff-portal/api/client/${email}/password/${firstname}/${lastName}/${address}/${address2}/${country}/${province}/${city}/${postal}/${phone}`,{method:'POST'})
+document.querySelector('#statusBtn').addEventListener('click', async () => {
+    const firstname = document.querySelector('#firstName').value || null
+    const lastName = document.querySelector('#lastName').value || null
+    const email = document.querySelector('#email').value || null
+    const address = document.querySelector('#address').value || null
+    const address2 = document.querySelector('#address2').value || null
+    const country = document.querySelector('#country').value || null
+    const province = document.querySelector('#province').value || null
+    const city = document.querySelector('#city').value || null
+    const postal = document.querySelector('#postal').value.replace(/\s/g,'') || null
+    const phone = document.querySelector('#phone').value.replace(/[^0-9.-]+/g,'').replace(/-/g,'')|| null
+
+    document.querySelector('#clientInfo').innerHTML =
+        `<h3>${firstname} ${lastName}</h3>
+        <p>${address}<br>
+        ${address2? `${address2}<br>` : ''}
+        ${city}, ${province}  ${postal}
+        <br>${country}
+        <br>${email}
+        <br>(${phone.substring(0, 3)}) ${phone.substring(3, 6)}-${phone.substring(6, 11)}</p>`
+        
+
+    // Post-Put Condition to Save Client Profile
+    if (!document.querySelector('#hiddenClientId').value) {
+        const clientInfo = await fetch(`/staff-portal/api/table/client/email/${email}`).then(res => res.json()).then(data => {return data} )
+            const getID = (clientInfo.length != 0)? clientInfo[0].id : 0
+            const status = 'Receive Order'
+            const subtotal = document.querySelector('#subtotalField').textContent.replace(/[^0-9.-]+/g,"")
+            const tax = document.querySelector('#taxField').textContent.replace(/[^0-9.-]+/g,"")
+            const total = document.querySelector('#totalField').textContent.replace(/[^0-9.-]+/g,"")
+
+
+            if(clientInfo.length != 0){
+                console.log('data 0')
+                document.querySelector('#hiddenClientId').textContent = getID
+
+                //Update Client Profile
+                if (clientInfo[0].first_name != firstname) fetch(`/staff-portal/api/client/first_name/${firstname}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].last_name != lastName) fetch(`/staff-portal/api/client/last_name/${lastName}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].address != address) fetch(`/staff-portal/api/client/address/${address}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].address2 != address2) fetch(`/staff-portal/api/client/address2/${address2}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].country != country) fetch(`/staff-portal/api/client/country/${country}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].province != province) fetch(`/staff-portal/api/client/province/${province}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].city != city) fetch(`/staff-portal/api/client/city/${city}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].postal_code != postal) fetch(`/staff-portal/api/client/postal_code/${postal}/${getID}`,{method:'PUT'})
+                if (clientInfo[0].phone != phone) fetch(`/staff-portal/api/client/phone/${phone}/${getID}`,{method:'PUT'})
+
+            }else{
+                //Create new Client Profile
+                if (document.querySelector('#saveProfile').checked){
+                    fetch(`/staff-portal/api/client/${email}/password/${firstname}/${lastName}/${address}/${address2}/${country}/${province}/${city}/${postal}/${phone}`,{method:'POST'})
+                }
+            }
+            //Save Transactions
+            fetch(`/staff-portal/api/transaction/${getID}/${email}/${firstname}/${lastName}/${status}/1/1/${subtotal}/${tax}/${total}`,{method:'POST'})
     }
+
 })
 
 
@@ -141,142 +188,37 @@ document.querySelector('#province').addEventListener('change', async (event) =>{
     await fetch(`/staff-portal/api/table/tax/province/${event.target.value}`)
     .then(res => res.json()).then(data => {
         const subtotal = document.querySelector('#subtotalField').textContent.replace(/[^0-9.-]+/g,"")
-        document.querySelector('#taxField').textContent = `$${(Number(subtotal) * data[0].tax_rate / 100).toFixed(2)}`
-        document.querySelector('#totalField').textContent = `$${(Number(subtotal) * (data[0].tax_rate / 100 + 1)).toFixed(2)}`
-        
-        
+        document.querySelectorAll('#taxField').forEach(taxField => {
+            taxField.textContent = `$${(Number(subtotal) * data[0].tax_rate / 100).toFixed(2)}`
+        })
+        document.querySelectorAll('#totalField').forEach(totalField => {
+            totalField.textContent = `$${(Number(subtotal) * (data[0].tax_rate / 100 + 1)).toFixed(2)}`
+        })
     })
 })
 
 
+// Sign In Button onClick Function
+document.querySelector('#signinBtn').addEventListener('click', async () =>{
+    const email = document.querySelector('#getEmail').value
+    const password = document.querySelector('#getPassword').value
 
-
-
-
-// function selectionDone(event) {
-//     event.preventDefault()
-
-//     console.log(`cart before stringify`,cart)
-
-//     const result = cart.filter(cart => cart.quantity !== 0)
-
-//     sessionStorage.cart = JSON.stringify(result)
-
-//     console.log(`cart before stringify`, result)
-
-//     startCheckout(result)
-
-// }
-// // code ***END*** for selection page
-
-
-
-
-// function startCheckout(data){
-//     const cartItems = data
-//     document.querySelector('#numCartItems').innerText = `${cartItems.length}`
-
-//     for (item of cartItems) {
-//         if (item.quantity > 0) {
-//             document.querySelector('#cartItems').innerHTML +=
-//             `<td><h6 class="my-0">${item.description}</h6></td>
-//             <td class="text-muted">${item.price}</td>`
-            
-//             // <li class="list-group-item d-flex justify-content-between lh-condensed">
-//             //     <div>
-//             //         ${item.description}
-//             //     </div>
-//             //     <span >${item.price}</span>
-//             // </li>
-            
-//         }
-//     // }
-
-//     // document.querySelector('#cartItems').innerHTML +=
-//     // `
-//     // <li class="list-group-item d-flex justify-content-between">
-//     //     <span>Subtotal</span>
-//     //     <strong id="gross_total">$20</strong>
-//     // </li>
-//     // <li class="list-group-item d-flex justify-content-between">
-//     //     <span>Tax</span>
-//     //     <strong id="tax_amount">$20</strong>
-//     // </li>
-//     // <li class="list-group-item d-flex justify-content-between">
-//     //     <span>Total</span>
-//     //     <strong id="net_total">$20</strong>
-//     // </li>
-//     // `
-//     }
-// }
-
-
-// // Register page grabbing client info
-// let form = {} 
-
-// function checkout(event) {
-//     event.preventDefault()
-//     const first_name = document.querySelector('#firstName').value
-//     const last_name = document.querySelector('#lastName').value
-//     const email = document.querySelector('#email').value
-//     const address = document.querySelector('#address').value
-//     const address_2 = document.querySelector('#address2').value
-//     const country = document.querySelector('#country').value
-//     const province = document.querySelector('#province').value
-//     const city = document.querySelector('#city').value
-//     const postal_code = document.querySelector('#postal').value
-//     const phone = document.querySelector('#postal').value
-//     form = {first_name, last_name, email, address, address_2, country, province, city, postal_code, phone}
-//     console.log(form)
-//     // localStorage.completeForm = JSON.stringify(form)
-
-//     document.querySelector('#checkoutPage').classList.toggle('dropdown')
-//     document.querySelector('#statusPage').classList.toggle('dropdown')
-
-//     confirmClient(form)
-// }
-// // code ***END*** for checkout page
-
-
-
-// // Add client info of current transaction
-// async function confirmClient(data){
-//     // PLaceholder for grabbing current status
-//     // fetch('/staff-portal/api/table/client/email/{the email}')
-//     // const transactions = await fetch("/staff-portal/api/table/transactions").then(response => response.json())
-//     // const transaction = transactions.filter(transaction => transaction.client_id = )
-//     // fetch('./posttest', {method:'post', body: JSON.stringify(data)})
-
-
-//     fetch('./posttest', { method: 'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-
-//     // document.querySelector('#clientInfo').innerHTML =
-//     //     `
-//     //     <p>Name: ${clientInfo.first_name} ${clientInfo.last_name} 
-//     //     <br>E-mail: ${clientInfo.email} 
-//     //     <br>Address: ${clientInfo.address} 
-//     //     ${clientInfo.address_2 ? `<br>Address 2: clientInfo.address_2` : ""} 
-//     //     <br>Country: ${clientInfo.country} 
-//     //     <br>Province: ${clientInfo.province}
-//     //     <br>City: ${clientInfo.city} 
-//     //     <br>Postal Code: ${clientInfo.postal_code} 
-//     //     <br>Phone Number: ${clientInfo.phone}
-//     //     <br>Transaction #${clientInfo.phone}</p>
-//     //     `
-
-//     // for (item of cartItems) {
-//     //     if (item.quantity > 0) {
-//     //         document.querySelector('#cartItemsStatus').innerHTML +=
-//     //         `
-//     //         <li class="list-group-item d-flex justify-content-between lh-condensed">
-//     //             <div>
-//     //                 <h6 class="my-0">${item.description}</h6>
-//     //             </div>
-//     //             <span class="text-muted">${item.price}</span>
-//     //         </li>
-//     //         `
-//     //     }
-//     // }
-// }
-
+    await fetch(`/staff-portal/api/table/client/email/${email}`)
+    .then(res => res.json()).then(data => {
+        if (data[0].password == password) {
+            document.querySelector('#hiddenClientId').textContent = data[0].id 
+            document.querySelector('#firstName').value = data[0].first_name 
+            document.querySelector('#lastName').value = data[0].last_name 
+            document.querySelector('#email').value = data[0].email 
+            document.querySelector('#address').value = data[0].address 
+            document.querySelector('#address2').value = data[0].address2 || ''
+            document.querySelector('#country').value = data[0].country 
+            document.querySelector('#province').value = data[0].province 
+            document.querySelector('#city').value = data[0].city 
+            document.querySelector('#postal').value = data[0].postal_code 
+            document.querySelector('#phone').value = data[0].phone 
+         
+        }
+    })
+})
 

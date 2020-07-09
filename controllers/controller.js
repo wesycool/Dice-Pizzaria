@@ -84,8 +84,19 @@ router.put('/staff-portal/api/products/:col/:set_params/:where_params', (req,res
 
 // Post Client Profile
 router.post('/staff-portal/api/client/:email/:password/:first_name/:last_name/:address/:address2/:country/:province/:city/:postal_code/:phone', (req,res) => {
-  console.log(req.params)
   models.insertByParams('client',req.params)
+})
+
+// Update Client Profile
+router.put('/staff-portal/api/client/:col/:set_params/:where_params', (req,res) => {
+  models.updateByParams('client',req.params.col,req.params.set_params,'id',req.params.where_params)
+})
+
+
+// Post Transaction
+router.post('/staff-portal/api/transaction/:client_id/:email/:first_name/:last_name/:status/:isDelivery/:isPaid/:gross_total/:tax_amount/:net_total', (req,res) => {
+
+  models.insertByParams('transactions',req.params)
 })
 
 
@@ -98,24 +109,15 @@ router.get('/staff-portal/api/:api/:units/:lat/:lon', async (req,res) => {
   res.send(getWeather)
 })
 
-// // pat-test HAHAHA
-// router.get('/myapi/:table', async (req, res) => {
-// 	const {table} = req.params
-// 	const list = await models.selectAll(table)
-
-// 	// console.log(list)
-
-// 	res.send(list)
-// })
 
 
-// //Pats test
-// router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
-//   const {id, status} = req.params
-//   const test = "Transaction status updated !"
-//   await models.updateStatus(id, status)
-//   res.send(test)
-// })
+//Pats test
+router.get('/staff-portal/api/post/:id/:status', async (req, res) => {
+  const {id, status} = req.params
+  const test = "Transaction status updated !"
+  await models.updateStatus(id, status)
+  res.send(test)
+})
 
 
 // // Post Test

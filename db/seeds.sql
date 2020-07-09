@@ -92,9 +92,9 @@ INSERT INTO tax VALUES(0, "YT", 5, default);
 -- INSERT INTO timestamp VALUES(0, staff_id, checknum, default);
 
 -- transactions ( id, client_id, isDelivery, isPaid, gross_total, tax_id, tax_amount, net_total, createdAt )
--- INSERT INTO transactions VALUES(0, client_id, isDelivery, isPaid, gross_total, tax_id, tax_amount, net_total, default);
-INSERT INTO transactions VALUES(0, 1, "Received Order",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
-INSERT INTO transactions VALUES(0, 2, "Received Order",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
-INSERT INTO transactions VALUES(0, 3, "Received Order",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
-INSERT INTO transactions VALUES(0, 4, "Received Order",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
-INSERT INTO transactions VALUES(0, 5, "Received Order",TRUE, TRUE, 21.97, 9, 13, 24.83, default);
+-- INSERT INTO transactions VALUES(0, client_id, isDelivery, isPaid, gross_total, tax_amount, net_total, default);
+INSERT INTO transactions VALUES(0, 1, "fil@asdsa.com", "Fil", "L", "Received Order",TRUE, TRUE, 15.98, 2.08, 18.06, default);
+INSERT INTO transactions VALUES(0, 2, "daniel@asdsa.com", "Daniel", "C", "Received Order",TRUE, TRUE, 7.99, 1.04, 9.03, default);
+INSERT INTO transactions VALUES(0, 3, "holly@asdsa.com", "Holly", "A", "Received Order",TRUE, TRUE, 15.98, 2.08, 18.06, default);
+INSERT INTO transactions VALUES(0, 4, "jolly@asdsa.com", "Jolly", "B", "Received Order",TRUE, TRUE, 31.97, 4.16, 36.13, default);
+INSERT INTO transactions VALUES(0, 5, "roger@asdsa.com", "Roger", "C", "Received Order",TRUE, TRUE, 15.98, 2.08, 18.06, default);

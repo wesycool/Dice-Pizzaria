@@ -22,11 +22,13 @@ CREATE TABLE client (
 CREATE Table transactions (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	client_id int,
+	email VARCHAR(100),
+	first_name VARCHAR(255),
+	last_name VARCHAR(255),
     status VARCHAR(20),
 	isDelivery BOOLEAN,
 	isPaid BOOLEAN,
 	gross_total DECIMAL(10,2),
-	tax_id int,
 	tax_amount DECIMAL(10,2),
 	net_total DECIMAL(10,2),
 	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

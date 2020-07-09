@@ -5,8 +5,7 @@
 <div class="row">
   <div class="col-md-4 order-md-2 mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-muted">Your cart</span>
-      <span id="numCartItems" class="badge badge-secondary badge-pill"></span>
+      <span class="text-muted">Your Cart<button type="button" class="btn" id='selectionBtn'><i class="fas fa-edit"></i></button></span>
     </h4>
     <table class="table table-borderless text-muted">
         <thead>
@@ -19,7 +18,7 @@
         <tbody id='cartItems'></tbody>
         <tfoot id='cartTotal' style='text-align:right'></tfoot>
     </table>
-    
+
   </div>
   <div class="col-md-8 order-md-1">
     <h4 class="mb-3">Your Profile</h4>
@@ -63,17 +62,14 @@
       </div>
 
       <div class="row">
-        <div class="col-md-5 mb-3">
-          <label for="country">Country</label>
-          <select class="custom-select d-block w-100" id="country" required="">
-            <option value="">Choose...</option>
-            <option>Canada</option>
-          </select>
+        <div class="col-md-3 mb-3">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" required="">
           <div class="invalid-feedback">
-            Please select a valid country.
+            City required.
           </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-6">
           <label for="state">Province</label>
           <select class="custom-select d-block w-100" id="province" required="">
                 <option>AB</option>
@@ -95,20 +91,24 @@
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="city">City</label>
-          <input type="text" class="form-control" id="city" required="">
-          <div class="invalid-feedback">
-            City required.
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
           <label for="postal">Postal Code</label>
           <input type="text" class="form-control" id="postal" required="">
           <div class="invalid-feedback">
             Postal Code required.
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+
+        <div class="col-md-5 mb-3">
+          <label for="country">Country</label>
+          <select class="custom-select d-block w-100" id="country" required="">
+            <option value="">Choose...</option>
+            <option>Canada</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a valid country.
+          </div>
+        </div>
+        <div class="col">
           <label for="phone">Phone #</label>
           <input type="text" class="form-control" id="phone" required="">
           <div class="invalid-feedback">
@@ -119,10 +119,10 @@
       
 
       <hr class="mb-4">
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="saveProfile">
+      <fieldset class="form-group form-check" disabled>
+        <input type="checkbox" class="form-check-input" id="saveProfile" checked>
         <label class="form-check-label" for="exampleCheck1">Save Profile</label>
-      </div>
+      </fieldset>
       <button id="statusBtn" class="btn btn-primary btn-lg btn-block" type="button">Continue to checkout</button>
     </form>
   </div>

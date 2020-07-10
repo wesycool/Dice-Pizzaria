@@ -41,14 +41,14 @@ Run mysql schema.sql and seeds.sql files to create database.
 Run node server.js to run the app.
 Sample link:
 - Client Site: http://creepers-dice-pizzaria.herokuapp.com/
-[[!Screenshot1](./screenshot1.png)](http://creepers-dice-pizzaria.herokuapp.com/)
+[![Screenshot1](./screenshot1.png)](http://creepers-dice-pizzaria.herokuapp.com/)
 
 - Staff Portal: https://creepers-dice-pizzaria.herokuapp.com/staff-portal/
 - username: edmund@asdsa.com password: password
-[[!Screenshot2](./screenshot2.png)](https://creepers-dice-pizzaria.herokuapp.com/staff-portal/)
+[![Screenshot2](./screenshot2.png)](https://creepers-dice-pizzaria.herokuapp.com/staff-portal/)
 
 - Staff Dashboard: https://creepers-dice-pizzaria.herokuapp.com/staff-portal/dashboard/
-[[!Screenshot3](./screenshot3.png)](https://creepers-dice-pizzaria.herokuapp.com/staff-portal/dashboard/)
+[![Screenshot3](./screenshot3.png)](https://creepers-dice-pizzaria.herokuapp.com/staff-portal/dashboard/)
 
 ## Future Development
 ```

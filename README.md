@@ -2,8 +2,6 @@
 # Dice Pizzeria
 A Team Creepers project using node express, express-handlebars, and mySQL.
 
-With the global pandemic impacting business all around the world some of the hardest hit have been in the restaurant industry. We wanted to help places we love to dine at by providing them with a solution to run their business more efficiently. The restaurant business is a very difficult and time consuming industry. A motivating factor was to create an all-in-one solution for restaurateurs to simplify day-to-day operations in one, concise platform. With technology and convenience being a motivating factor for choosing which app to order food from, we wanted to give business owners the opportunity to receive direct orders from their clients, bypassing the big apps which demand a significant portion of profits.
-
 Dice Pizzeria is a full service restaurant management and online ordering system. This cloud-based platform was developed to simplify day-to-day operations from receiving and executing orders to managing staff.
 
 With an easy to use UI for customers to place orders and a concise back end for receiving orders, Dice Pizzeria is capable of running their restaurant at optimal capability.
